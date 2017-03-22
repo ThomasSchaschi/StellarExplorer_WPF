@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SwissEphNet;
 
 namespace StellarExplorer_WPF
 {
@@ -24,5 +25,15 @@ namespace StellarExplorer_WPF
         {
             InitializeComponent();
         }
+
+        private void MainWindow_OnInitialized(object sender, EventArgs e)
+        {
+           
+        }
+
+        public String Customer { get; set; }
+        
+
+
     }
 }
