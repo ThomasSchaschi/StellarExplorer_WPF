@@ -9,9 +9,9 @@ using System.Linq;
 using System.Text;
 
 
-namespace SweWin
+namespace StellarExplorer_WPF.Modelle
 {
-    public partial class FormData 
+    public class FormData  
     {
         const int BUFLEN  =8000;
         const string MY_ODEGREE_STRING ="°";
@@ -20,19 +20,70 @@ namespace SweWin
         /// <summary>
         /// Defining Values of placeholders for various options to choose from
         /// </summary>
-        static string[] etut = new string[] { "UT", "ET" };
-        static string[] lat_n_s = new string[] { "N", "S" };
-        static string[] lon_e_w = new string[] { "E", "W" };
-        const int NEPHE = 3;
-        static string[] ephe = new string[] { "Swiss Ephemeris", "JPL Ephemeris DE406", "Moshier Ephemeris" };
-        const int NPLANSEL = 3;
-        static string[] plansel = new string[] { "main planets", "with asteroids", "with hyp. bodies" };
-        const int NCENTERS = 6;
-        static string[] ctr = new string[] { "geocentric", "topocentric", "heliocentric", "barycentric", "sidereal Fagan", "sidereal Lahiri" };
-        const int NHSYS = 8;
-        static string[] hsysname = new string[] { "Placidus", "Campanus", "Regiomontanus", "Koch", "Equal", "Vehlow equal", "Horizon", "B=Alcabitus" };
+        string[] etut = new string[] { "UT", "ET" };
 
-        static double square_sum(double[] x) { return (x[0] * x[0] + x[1] * x[1] + x[2] * x[2]); }
+        public string[] Etut
+        {
+            get { return etut; }
+            set { etut = value; }
+        }
+
+        public string[] LatNS
+        {
+            get { return lat_n_s; }
+            set { lat_n_s = value; }
+        }
+
+        public string[] LonEW
+        {
+            get { return lon_e_w; }
+            set { lon_e_w = value; }
+        }
+
+        public string[] Ephe
+        {
+            get { return ephe; }
+            set { ephe = value; }
+        }
+
+        public string[] Plansel
+        {
+            get { return plansel; }
+            set { plansel = value; }
+        }
+
+        public string[] Ctr
+        {
+            get { return ctr; }
+            set { ctr = value; }
+        }
+
+        public string[] Hsysname
+        {
+            get { return hsysname; }
+            set { hsysname = value; }
+        }
+
+        public string[] ZodNam
+        {
+            get { return zod_nam; }
+            set { zod_nam = value; }
+        }
+
+
+
+        string[] lat_n_s = new string[] { "N", "S" };
+        string[] lon_e_w = new string[] { "E", "W" };
+        const int NEPHE = 3;
+        string[] ephe = new string[] { "Swiss Ephemeris", "JPL Ephemeris DE406", "Moshier Ephemeris" };
+        const int NPLANSEL = 3;
+        string[] plansel = new string[] { "main planets", "with asteroids", "with hyp. bodies" };
+        const int NCENTERS = 6;
+        string[] ctr = new string[] { "geocentric", "topocentric", "heliocentric", "barycentric", "sidereal Fagan", "sidereal Lahiri" };
+        const int NHSYS = 8;
+        string[] hsysname = new string[] { "Placidus", "Campanus", "Regiomontanus", "Koch", "Equal", "Vehlow equal", "Horizon", "B=Alcabitus" };
+
+        double square_sum(double[] x) { return (x[0] * x[0] + x[1] * x[1] + x[2] * x[2]); }
     
 
         const int BIT_ROUND_SEC = 1;
@@ -44,7 +95,7 @@ namespace SweWin
         const string PLSEL_A = "0123456789mtABCDEFGHIJKLMNOPQRSTUVWX";
 
       
-        static string[] zod_nam = new string[]{"ar", "ta", "ge", "cn", "le", "vi", "li", "sc", "sa", "cp", "aq", "pi"};
+        string[] zod_nam = new string[]{"ar", "ta", "ge", "cn", "le", "vi", "li", "sc", "sa", "cp", "aq", "pi"};
 
         class cpd
         {
@@ -92,7 +143,7 @@ namespace SweWin
         SwissEph sweph;
 
         public FormData() {
-            InitializeComponent();
+           
          
             sweph = new SwissEph();
            
@@ -101,16 +152,8 @@ namespace SweWin
             
         }
 
-       
-
-        void FormData_Disposed(object sender, EventArgs e) {
-            sweph.Dispose();
-            sweph = null;
-        }
-
-
-
-
+      
+        
         void init_data() {
             //time_t time_of_day;
             //struct tm tmbuf;
@@ -145,131 +188,14 @@ namespace SweWin
 
 
 
+        
 
-        /// <summary>
-        /// Set all data in form pre
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void FormData_Load(object sender, EventArgs e) {
-            int i, j;
-            old_pd = pd.Clone();
-            COMBO_N_S.Items.Clear();
-            for (i = j = 0; i < 2; i++) {
-                if (String.Compare(lat_n_s[i], pd.lat_n_s) == 0) j = i;
-                COMBO_N_S.Items.Add(lat_n_s[i]);
-            }
-            COMBO_N_S.SelectedIndex = j;
-
-            COMBO_E_W.Items.Clear();
-            for (i = j = 0; i < 2; i++) {
-                if (String.Compare(lon_e_w[i], pd.lon_e_w) == 0) j = i;
-                COMBO_E_W.Items.Add(lon_e_w[i]);
-            }
-            COMBO_E_W.SelectedIndex = j;
-
-            COMBO_ET_UT.Items.Clear();
-            for (i = j = 0; i < 2; i++) {
-                if (String.Compare(etut[i], pd.etut) == 0) j = i;
-                COMBO_ET_UT.Items.Add(etut[i]);
-            }
-            COMBO_ET_UT.SelectedIndex = j;
-
-            COMBO_EPHE.Items.Clear();
-            for (i = j = 0; i < NEPHE; i++) {
-                if (String.Compare(ephe[i], pd.ephe) == 0) j = i;
-                COMBO_EPHE.Items.Add(ephe[i]);
-            }
-            COMBO_EPHE.SelectedIndex = j;
-
-            COMBO_PLANSEL.Items.Clear();
-            for (i = j = 0; i < NPLANSEL; i++) {
-                if (String.Compare(plansel[i], pd.plansel) == 0) j = i;
-                COMBO_PLANSEL.Items.Add(plansel[i]);
-            }
-            COMBO_PLANSEL.SelectedIndex = j;
-
-            COMBO_CENTER.Items.Clear();
-            for (i = j = 0; i < NCENTERS; i++) {
-                if (String.Compare(ctr[i], pd.ctr) == 0) j = i;
-                COMBO_CENTER.Items.Add(ctr[i]);
-            }
-            COMBO_CENTER.SelectedIndex = j;
-
-            COMBO_HSYS.Items.Clear();
-            for (i = j = 0; i < NHSYS; i++) {
-                if (String.Compare(hsysname[i], pd.hsysname) == 0) j = i;
-                COMBO_HSYS.Items.Add(hsysname[i]);
-            }
-            COMBO_HSYS.SelectedIndex = j;
-
-            /* set date */
-            EDIT_DAY.Text = pd.mday.ToString();
-            EDIT_MONTH.Text = pd.mon.ToString();
-            EDIT_YEAR.Text = pd.year.ToString();
-            EDIT_HOUR.Text = pd.hour.ToString();
-            EDIT_MINUTE.Text = pd.min.ToString();
-            EDIT_SECOND.Text = pd.sec.ToString();
-            EDIT_LONG.Text = pd.lon_deg.ToString();
-            EDIT_LONGM.Text = pd.lon_min.ToString();
-            EDIT_LONGS.Text = pd.lon_sec.ToString();
-            EDIT_LAT.Text = pd.lat_deg.ToString();
-            EDIT_LATM.Text = pd.lat_min.ToString();
-            EDIT_LATS.Text = pd.lat_sec.ToString();
-            EDIT_ALT.Text = pd.alt.ToString();
-            EDIT_ASTNO.Text = pd.sast;
-        }
-
-
-
-
-
-        /// <summary>
-        /// During value adjustment
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void PB_EXIT_Click(object sender, EventArgs e) {
-            
-        }
-
-        private void COMBO_EPHE_SelectedIndexChanged(object sender, EventArgs e) {
-            pd.ephe = COMBO_EPHE.Text;
-        }
-
-        private void COMBO_PLANSEL_SelectedIndexChanged(object sender, EventArgs e) {
-            pd.plansel = COMBO_PLANSEL.Text;
-        }
-
-        private void COMBO_CENTER_SelectedIndexChanged(object sender, EventArgs e) {
-            pd.ctr = COMBO_CENTER.Text;
-        }
-
-        private void COMBO_ET_UT_SelectedIndexChanged(object sender, EventArgs e) {
-            pd.etut = COMBO_ET_UT.Text;
-        }
-
-        private void COMBO_E_W_SelectedIndexChanged(object sender, EventArgs e) {
-            pd.lon_e_w = COMBO_E_W.Text;
-        }
-
-        private void COMBO_N_S_SelectedIndexChanged(object sender, EventArgs e) {
-            pd.lat_n_s = COMBO_N_S.Text;
-        }
-
-        private void COMBO_HSYS_SelectedIndexChanged(object sender, EventArgs e) {
-            pd.hsysname = COMBO_HSYS.Text;
-        }
-
-
-        private void EDIT_ASTNO_TextChanged(object sender, EventArgs e) {
-            pd.sast = EDIT_ASTNO.Text;
-        }
+        
 
         private void PB_DOIT_Click(object sender, EventArgs e) {
             StringBuilder buf = new StringBuilder();
             swisseph(buf);
-            EDIT_OUTPUT2.Text = buf.ToString();
+            //EDIT_OUTPUT2.Text = buf.ToString();
         }
         
         int swisseph(StringBuilder buf) {
@@ -820,20 +746,6 @@ namespace SweWin
                 case 'f': return SwissEph.SE_FIXSTAR;
             }
             return -1;
-        }
-
-        static int atoulng(string s, ref uint lng) {
-            if (uint.TryParse(s, out lng))
-                return SwissEph.OK;
-            else
-                return SwissEph.ERR;
-        }
-
-        static int atoslng(string s, ref int lng) {
-            if (int.TryParse(s, out lng))
-                return SwissEph.OK;
-            else
-                return SwissEph.ERR;
         }
 
         

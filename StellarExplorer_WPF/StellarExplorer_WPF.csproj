@@ -84,9 +84,6 @@
     <Compile Include="MinorCenter\DownloadManager.cs" />
     <Compile Include="MinorCenter\ObjectCollection.cs" />
     <Compile Include="Modelle\FormData.cs" />
-    <Compile Include="Modelle\FormData.designer.cs">
-      <DependentUpon>FormData.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
