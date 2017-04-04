@@ -80,8 +80,7 @@ namespace SweWin.LiveQuery
             int max = 999;
             foreach (TableEphemerisEntry entry in e)
             {
-                if (counter < max) 
-                {
+                if (counter < max)                  {
                     sql.Append("(N'" + entry.custom_date + " 00:00:00" + "',");
                     sql.Append("N'" + entry.custom_ecllong + "',");
                     sql.Append("N'" + entry.custom_ecllat + "',");
