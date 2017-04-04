@@ -92,7 +92,7 @@ namespace SweWin.LiveQuery
                     sql.Append(",");
                     counter++;
                 }
-                else 
+                else  
                 {
                     String entire = sql.ToString();
                     entire = entire.Remove(entire.Length - 1, 1);

@@ -126,6 +126,7 @@
     <Compile Include="DataViewer\Database\Table_Template.cs">
       <DependentUpon>StellarDBAdo.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataViewer\Database\TakeOverProperties.cs" />
     <Compile Include="DataViewer\DataViewerModel.cs" />
     <Compile Include="DataViewer\DBOperations.cs" />
     <Compile Include="MainWindow.xaml.cs">

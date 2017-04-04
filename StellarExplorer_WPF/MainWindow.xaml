@@ -274,7 +274,7 @@
                                   ItemsSource="{Binding SelectableIntervalsList}"
                                   SelectedIndex="0"
                                   IsSynchronizedWithCurrentItem="True"
-                                  SelectedItem="{Binding SelectedInterval, Mode=TwoWay}"/>
+                                  SelectedItem="{Binding SelectedIntervalString, Mode=TwoWay}"/>
                         <ComboBox Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource SDropdowns}"
                                   ItemsSource="{Binding DataBaseBodiesList}"
                                   SelectedIndex="0"

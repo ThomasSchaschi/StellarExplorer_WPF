@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Input;
 using StellarExplorer_WPF.Annotations;
+using StellarExplorer_WPF.MinorCenter;
 using WpfDBpruef.modelle;
 
 
@@ -378,6 +379,13 @@ namespace StellarExplorer_WPF.Modelle
 
 
         private String bufferString = String.Empty;
+        private String monitorBody;
+
+        public String MonitorBody
+        {
+            get { return monitorBody; }
+            set { monitorBody = value; }
+        }
 
         public String BufferString
         {
@@ -395,8 +403,9 @@ namespace StellarExplorer_WPF.Modelle
             swisseph(buf);
             
         }
-        
-        int swisseph(StringBuilder buf) {
+
+        public int swisseph(StringBuilder buf)
+        {
             string serr = String.Empty, serr_save = String.Empty, serr_warn = String.Empty;
             string s, s1, s2;
             string star = String.Empty;
@@ -438,37 +447,57 @@ namespace StellarExplorer_WPF.Modelle
             char hsys = pd.hsysname[0];
             //  *serr = *serr_save = *serr_warn = '\0';
             //ephepath = ".;sweph";
-            if (String.Compare(pd.ephe, ephe[1]) == 0) {
+            if (String.Compare(pd.ephe, ephe[1]) == 0)
+            {
                 whicheph = SwissEph.SEFLG_JPLEPH;
                 fname = SwissEph.SE_FNAME_DE406;
-            } else if (String.Compare(pd.ephe, ephe[0]) == 0)
+            }
+            else if (String.Compare(pd.ephe, ephe[0]) == 0)
                 whicheph = SwissEph.SEFLG_SWIEPH;
             else
                 whicheph = SwissEph.SEFLG_MOSEPH;
             if (String.Compare(pd.etut, "UT") == 0)
                 universal_time = true;
-            if (String.Compare(pd.plansel, plansel[0]) == 0) {
+            if (String.Compare(pd.plansel, plansel[0]) == 0)
+            {
                 plsel = PLSEL_D;
-            } else if (String.Compare(pd.plansel, plansel[1]) == 0) {
+            }
+            else if (String.Compare(pd.plansel, plansel[1]) == 0)
+            {
                 plsel = PLSEL_P;
-            } else if (String.Compare(pd.plansel, plansel[2]) == 0) {
+            }
+            else if (String.Compare(pd.plansel, plansel[2]) == 0)
+            {
                 plsel = PLSEL_A;
             }
             if (String.Compare(pd.ctr, ctr[0]) == 0)
                 calc_house_pos = true;
-            else if (String.Compare(pd.ctr, ctr[1]) == 0) {
+            else if (String.Compare(pd.ctr, ctr[1]) == 0)
+            {
                 iflag |= SwissEph.SEFLG_TOPOCTR;
                 calc_house_pos = true;
-            } else if (String.Compare(pd.ctr, ctr[2]) == 0) {
+            }
+            else if (String.Compare(pd.ctr, ctr[2]) == 0)
+            {
                 iflag |= SwissEph.SEFLG_HELCTR;
-            } else if (String.Compare(pd.ctr, ctr[3]) == 0) {
+            }
+            else if (String.Compare(pd.ctr, ctr[3]) == 0)
+            {
                 iflag |= SwissEph.SEFLG_BARYCTR;
-            } else if (String.Compare(pd.ctr, ctr[4]) == 0) {
+            }
+            else if (String.Compare(pd.ctr, ctr[4]) == 0)
+            {
                 iflag |= SwissEph.SEFLG_SIDEREAL;
                 sweph.swe_set_sid_mode(SwissEph.SE_SIDM_FAGAN_BRADLEY, 0, 0);
-            } else if (String.Compare(pd.ctr, ctr[5]) == 0) {
+            }
+            else if (String.Compare(pd.ctr, ctr[5]) == 0)
+            {
                 iflag |= SwissEph.SEFLG_SIDEREAL;
                 sweph.swe_set_sid_mode(SwissEph.SE_SIDM_LAHIRI, 0, 0);
+                //#if 0
+                //  } else {
+                //    iflag &= ~(SEFLG_HELCTR | SEFLG_BARYCTR | SEFLG_TOPOCTR);
+                //#endif
             }
             lon = pd.lon_deg + pd.lon_min / 60.0 + pd.lon_sec / 3600.0;
             if (pd.lon_e_w.StartsWith("W"))
@@ -477,6 +506,8 @@ namespace StellarExplorer_WPF.Modelle
             if (pd.lat_n_s.StartsWith("S"))
                 lat = -lat;
             do_print(buf, C.sprintf("Planet Positions from %s \n\n", pd.ephe));
+
+
             if ((whicheph & SwissEph.SEFLG_JPLEPH) != 0)
                 sweph.swe_set_jpl_file(fname);
             iflag = (iflag & ~SwissEph.SEFLG_EPHMASK) | whicheph;
@@ -511,12 +542,20 @@ namespace StellarExplorer_WPF.Modelle
             do_print(buf, C.sprintf("%d.%d.%d %s %s    %#02d:%#02d:%#02d %s\n",
                 jday, jmon, jyear, bc, jul,
                 jhour, jmin, jsec, pd.etut));
+
+
+            //custom_date
+            custom_date = String.Concat(jyear, "-", jmon, "-", jday);
+
+
             jut = jhour + jmin / 60.0 + jsec / 3600.0;
-            if (universal_time) {
+            if (universal_time)
+            {
                 delt = sweph.swe_deltat(tjd_ut);
                 do_print(buf, C.sprintf(" delta t: %f sec", delt * 86400.0));
                 tjd_et = tjd_ut + delt;
-            } else
+            }
+            else
                 tjd_et = tjd_ut;
             do_print(buf, C.sprintf(" jd (ET) = %f\n", tjd_et));
             iflgret = sweph.swe_calc(tjd_et, SwissEph.SE_ECL_NUT, iflag, x, ref serr);
@@ -525,11 +564,19 @@ namespace StellarExplorer_WPF.Modelle
             s1 = dms(eps_true, round_flag);
             s2 = dms(eps_mean, round_flag);
             do_print(buf, C.sprintf("\n%-15s %s%s%s    (true, mean)", "Ecl. obl.", s1, gap, s2));
+
+            //custom_eclobl
+            custom_eclobl = String.Concat(s1, "-", s2);
+
             nutl = x[2];
             nuto = x[3];
             s1 = dms(nutl, round_flag);
             s2 = dms(nuto, round_flag);
             do_print(buf, C.sprintf("\n%-15s %s%s%s    (dpsi, deps)", "Nutation", s1, gap, s2));
+
+            //custom_eclnutation
+            custom_nutation = String.Concat(s1, "-", s2);
+
             do_print(buf, "\n\n");
             do_print(buf, "               ecl. long.       ecl. lat.   ");
             do_print(buf, "    dist.          speed");
@@ -546,65 +593,86 @@ namespace StellarExplorer_WPF.Modelle
             armc = sidt * 15;
             /* additional asteroids */
             //splan = plsel;
-            if (String.Compare(plsel, PLSEL_P) == 0) {
+            if (String.Compare(plsel, PLSEL_P) == 0)
+            {
                 var cpos = pd.sast.Split(",;. \t".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                 j = cpos.Length;
-                for (i = 0, nast = 0; i < j; i++) {
-                    if ((astno[nast] = int.Parse(cpos[i])) > 0) {
+                for (i = 0, nast = 0; i < j; i++)
+                {
+                    if ((astno[nast] = int.Parse(cpos[i])) > 0)
+                    {
                         nast++;
                         plsel += "+";
                     }
                 }
-            } int pspi;
-            for (pspi = 0, iast = 0; pspi < plsel.Length; pspi++) {
+            }
+            int pspi;
+            for (pspi = 0, iast = 0; pspi < plsel.Length; pspi++)
+            {
                 psp = plsel[pspi];
-                if (psp == '+') {
+                if (psp == '+')
+                {
                     ipl = SwissEph.SE_AST_OFFSET + (int)astno[iast];
                     iast++;
-                } else
+                }
+                else
                     ipl = letter_to_ipl(psp);
-                if ((iflag & SwissEph.SEFLG_HELCTR) != 0) {
+                if ((iflag & SwissEph.SEFLG_HELCTR) != 0)
+                {
                     if (ipl == SwissEph.SE_SUN
                       || ipl == SwissEph.SE_MEAN_NODE || ipl == SwissEph.SE_TRUE_NODE
                       || ipl == SwissEph.SE_MEAN_APOG || ipl == SwissEph.SE_OSCU_APOG)
                         continue;
-                } else if ((iflag & SwissEph.SEFLG_BARYCTR) != 0) {
+                }
+                else if ((iflag & SwissEph.SEFLG_BARYCTR) != 0)
+                {
                     if (ipl == SwissEph.SE_MEAN_NODE || ipl == SwissEph.SE_TRUE_NODE
                       || ipl == SwissEph.SE_MEAN_APOG || ipl == SwissEph.SE_OSCU_APOG)
                         continue;
-                } else          /* geocentric */
-                    if (ipl == SwissEph.SE_EARTH)
-                        continue;
+                }
+                else          /* geocentric */
+                  if (ipl == SwissEph.SE_EARTH)
+                    continue;
                 /* ecliptic position */
-                if (ipl == SwissEph.SE_FIXSTAR) {
+                if (ipl == SwissEph.SE_FIXSTAR)
+                {
                     iflgret = sweph.swe_fixstar(star, tjd_et, iflag, x, ref serr);
                     se_pname = star;
-                } else {
+                }
+                else
+                {
                     iflgret = sweph.swe_calc(tjd_et, ipl, iflag, x, ref serr);
                     se_pname = sweph.swe_get_planet_name(ipl);
-                    if (ipl > SwissEph.SE_AST_OFFSET) {
+                    if (ipl > SwissEph.SE_AST_OFFSET)
+                    {
                         s = C.sprintf("#%d", (int)astno[iast - 1]);
                         se_pname += new String(' ', 11 - s.Length) + s;
                     }
                 }
-                if (iflgret >= 0) {
-                    if (calc_house_pos) {
+                if (iflgret >= 0)
+                {
+                    if (calc_house_pos)
+                    {
                         hpos = sweph.swe_house_pos(armc, lat, eps_true, hsys, x, ref serr);
                         if (hpos == 0)
                             iflgret = SwissEph.ERR;
                     }
                 }
-                if (iflgret < 0) {
-                    if (!String.IsNullOrEmpty(serr) && String.Compare(serr, serr_save) != 0) {
+                if (iflgret < 0)
+                {
+                    if (!String.IsNullOrEmpty(serr) && String.Compare(serr, serr_save) != 0)
+                    {
                         serr_save = serr;
                         do_print(buf, "error: ");
                         do_print(buf, serr);
                         do_print(buf, "\n");
                     }
-                } else if (!String.IsNullOrEmpty(serr) && String.IsNullOrEmpty(serr_warn))
+                }
+                else if (!String.IsNullOrEmpty(serr) && String.IsNullOrEmpty(serr_warn))
                     serr_warn = serr;
                 /* equator position */
-                if (fmt.IndexOfAny("aADdQ".ToCharArray()) >= 0) {
+                if (fmt.IndexOfAny("aADdQ".ToCharArray()) >= 0)
+                {
                     iflag2 = iflag | SwissEph.SEFLG_EQUATORIAL;
                     if (ipl == SwissEph.SE_FIXSTAR)
                         iflgret = sweph.swe_fixstar(star, tjd_et, iflag2, xequ, ref serr);
@@ -612,7 +680,8 @@ namespace StellarExplorer_WPF.Modelle
                         iflgret = sweph.swe_calc(tjd_et, ipl, iflag2, xequ, ref serr);
                 }
                 /* ecliptic cartesian position */
-                if (fmt.IndexOfAny("XU".ToCharArray()) >= 0) {
+                if (fmt.IndexOfAny("XU".ToCharArray()) >= 0)
+                {
                     iflag2 = iflag | SwissEph.SEFLG_XYZ;
                     if (ipl == SwissEph.SE_FIXSTAR)
                         iflgret = sweph.swe_fixstar(star, tjd_et, iflag2, xcart, ref serr);
@@ -620,7 +689,8 @@ namespace StellarExplorer_WPF.Modelle
                         iflgret = sweph.swe_calc(tjd_et, ipl, iflag2, xcart, ref serr);
                 }
                 /* equator cartesian position */
-                if (fmt.IndexOfAny("xu".ToCharArray()) >= 0) {
+                if (fmt.IndexOfAny("xu".ToCharArray()) >= 0)
+                {
                     iflag2 = iflag | SwissEph.SEFLG_XYZ | SwissEph.SEFLG_EQUATORIAL;
                     if (ipl == SwissEph.SE_FIXSTAR)
                         iflgret = sweph.swe_fixstar(star, tjd_et, iflag2, xcartq, ref serr);
@@ -634,11 +704,23 @@ namespace StellarExplorer_WPF.Modelle
                  * sparated by the gap string.
                  */
                 int spi = 0;
-                for (spi = 0; spi < fmt.Length; spi++) {
+
+                if (se_pname.Equals(MonitorBody))
+                {
+                    custom_ecllong = x[0].ToString();
+                    custom_ecllat = x[1].ToString();
+                    custom_dist = x[2].ToString();
+                    custom_speed = x[3].ToString();
+                    custom_house = x[4].ToString();
+                }
+
+                for (spi = 0; spi < fmt.Length; spi++)
+                {
                     char sp = fmt[spi];
                     if (spi > 0)
                         do_print(buf, gap);
-                    switch (sp) {
+                    switch (sp)
+                    {
                         case 'y':
                             do_print(buf, "%d", jyear);
                             break;
@@ -683,12 +765,15 @@ namespace StellarExplorer_WPF.Modelle
                         case 's':
                             var sp2i = spi + 1;
                             char sp2 = fmt.Length <= sp2i ? '\0' : fmt[sp2i];
-                            if (sp2 == 'S' || sp2 == 's' || fmt.IndexOfAny("XUxu".ToCharArray()) >= 0) {
-                                for (sp2i = 0; sp2i < fmt.Length; sp2i++) {
+                            if (sp2 == 'S' || sp2 == 's' || fmt.IndexOfAny("XUxu".ToCharArray()) >= 0)
+                            {
+                                for (sp2i = 0; sp2i < fmt.Length; sp2i++)
+                                {
                                     sp2 = fmt[sp2i];
                                     if (sp2i > 0)
                                         do_print(buf, gap);
-                                    switch (sp2) {
+                                    switch (sp2)
+                                    {
                                         case 'L':       /* speed! */
                                         case 'Z':       /* speed! */
                                             do_print(buf, dms(x[3], round_flag));
@@ -742,11 +827,14 @@ namespace StellarExplorer_WPF.Modelle
                                             break;
                                     }
                                 }
-                                if (fmt.Length <= spi + 1 && (fmt[spi + 1] == 'S' || fmt[sp + 1] == 's')) {
+                                if (fmt.Length <= spi + 1 && (fmt[spi + 1] == 'S' || fmt[sp + 1] == 's'))
+                                {
                                     spi++;
                                     sp = fmt[spi];
                                 }
-                            } else {
+                            }
+                            else
+                            {
                                 do_print(buf, dms(x[3], round_flag));
                             }
                             break;
@@ -772,12 +860,15 @@ namespace StellarExplorer_WPF.Modelle
                             do_print(buf, "%# 14.9f", x[2]);
                             break;
                         case 'r':
-                            if (ipl == SwissEph.SE_MOON) { /* for moon print parallax */
+                            if (ipl == SwissEph.SE_MOON)
+                            { /* for moon print parallax */
                                 sinp = 8.794 / x[2];        /* in seconds of arc */
                                 ar = sinp * (1 + sinp * sinp * 3.917402e-12);
                                 /* the factor is 1 / (3600^2 * (180/pi)^2 * 6) */
                                 do_print(buf, "%# 13.5f\"", ar);
-                            } else {
+                            }
+                            else
+                            {
                                 do_print(buf, "%# 14.9f", x[2]);
                             }
                             break;
@@ -815,14 +906,28 @@ namespace StellarExplorer_WPF.Modelle
                             do_print(buf, dms(xequ[4], round_flag));
                             break;
                     } /* switch */
+
+
+                    /*
+                     * EOF printing i to tb
+                     */
+
+
+
                 }   /* for sp */
-                if (calc_house_pos) {
+                if (calc_house_pos)
+                {
                     //sprintf(s, "  %# 6.4f", hpos);
                     do_print(buf, "%# 9.4f", hpos);
+
+                    //custom_house
+                    custom_house = hpos.ToString();
+
                 }
                 do_print(buf, "\n");
             }     /* for psp */
-            if (!String.IsNullOrEmpty(serr_warn)) {
+            if (!String.IsNullOrEmpty(serr_warn))
+            {
                 do_print(buf, "\nwarning: ");
                 do_print(buf, serr_warn);
                 do_print(buf, "\n");
@@ -830,13 +935,13 @@ namespace StellarExplorer_WPF.Modelle
             /* houses */
             do_print(buf, C.sprintf("\nHouse Cusps (%s)\n\n", pd.hsysname));
             a = sidt + 0.5 / 3600;
-            do_print(buf, C.sprintf("sid. time : %4d:%#02d:%#02d  ", (int)a, 
-                (int)((a * 60.0) % 60.0), 
+            do_print(buf, C.sprintf("sid. time : %4d:%#02d:%#02d  ", (int)a,
+                (int)((a * 60.0) % 60.0),
                 (int)((a * 3600.0) % 60.0))
                 );
             a = armc + 0.5 / 3600;
             do_print(buf, "armc      : %4d%s%#02d'%#02d\"\n",
-                  (int)armc, MY_ODEGREE_STRING, 
+                  (int)armc, MY_ODEGREE_STRING,
                   (int)((armc * 60.0) % 60.0),
                   (int)((a * 3600.0) % 60.0));
             do_print(buf, "geo. lat. : %4d%c%#02d'%#02d\" ",
@@ -845,9 +950,11 @@ namespace StellarExplorer_WPF.Modelle
                   pd.lon_deg, pd.lon_e_w[0], pd.lon_min, pd.lon_sec);
             sweph.swe_houses_ex(tjd_ut, iflag, lat, lon, hsys, cusp, ascmc);
             round_flag |= BIT_ROUND_SEC;
+
             do_print(buf, C.sprintf("AC        : %s\n", dms(ascmc[0], round_flag | BIT_ZODIAC)));
             do_print(buf, C.sprintf("MC        : %s\n", dms(ascmc[1], round_flag | BIT_ZODIAC)));
-            for (i = 1; i <= 12; i++) {
+            for (i = 1; i <= 12; i++)
+            {
                 do_print(buf, C.sprintf("house   %2d: %s\n", i, dms(cusp[i], round_flag | BIT_ZODIAC)));
             }
             do_print(buf, C.sprintf("Vertex    : %s\n", dms(ascmc[3], round_flag | BIT_ZODIAC)));
@@ -956,5 +1063,22 @@ namespace StellarExplorer_WPF.Modelle
 
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        private String custom_nutation,
+            custom_ecllong,
+            custom_ecllat,
+            custom_dist,
+            custom_speed,
+            custom_house,
+            custom_eclobl,
+            custom_date;
+
+        public TableEphemerisEntry ExtractTemplateFromStringBuilder()
+        {
+            return new TableEphemerisEntry(
+                custom_date, custom_dist, custom_ecllat, custom_ecllong, custom_eclobl, custom_house, custom_nutation, custom_speed
+                );
+        }
+
     }
 }
