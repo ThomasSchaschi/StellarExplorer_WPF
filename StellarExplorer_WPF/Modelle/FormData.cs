@@ -6,12 +6,16 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows.Input;
+using StellarExplorer_WPF.Annotations;
+using WpfDBpruef.modelle;
 
 
 namespace StellarExplorer_WPF.Modelle
 {
-    public class FormData  
+    public class FormData : INotifyPropertyChanged
     {
         const int BUFLEN  =8000;
         const string MY_ODEGREE_STRING ="°";
@@ -21,57 +25,6 @@ namespace StellarExplorer_WPF.Modelle
         /// Defining Values of placeholders for various options to choose from
         /// </summary>
         string[] etut = new string[] { "UT", "ET" };
-
-        public string[] Etut
-        {
-            get { return etut; }
-            set { etut = value; }
-        }
-
-        public string[] LatNS
-        {
-            get { return lat_n_s; }
-            set { lat_n_s = value; }
-        }
-
-        public string[] LonEW
-        {
-            get { return lon_e_w; }
-            set { lon_e_w = value; }
-        }
-
-        public string[] Ephe
-        {
-            get { return ephe; }
-            set { ephe = value; }
-        }
-
-        public string[] Plansel
-        {
-            get { return plansel; }
-            set { plansel = value; }
-        }
-
-        public string[] Ctr
-        {
-            get { return ctr; }
-            set { ctr = value; }
-        }
-
-        public string[] Hsysname
-        {
-            get { return hsysname; }
-            set { hsysname = value; }
-        }
-
-        public string[] ZodNam
-        {
-            get { return zod_nam; }
-            set { zod_nam = value; }
-        }
-
-
-
         string[] lat_n_s = new string[] { "N", "S" };
         string[] lon_e_w = new string[] { "E", "W" };
         const int NEPHE = 3;
@@ -82,6 +35,195 @@ namespace StellarExplorer_WPF.Modelle
         string[] ctr = new string[] { "geocentric", "topocentric", "heliocentric", "barycentric", "sidereal Fagan", "sidereal Lahiri" };
         const int NHSYS = 8;
         string[] hsysname = new string[] { "Placidus", "Campanus", "Regiomontanus", "Koch", "Equal", "Vehlow equal", "Horizon", "B=Alcabitus" };
+
+        private DateTime dateTime = DateTime.Now;
+
+        public DateTime DateTime
+        {
+            get { return dateTime; }
+            set { dateTime = value; }
+        }
+
+        private String selectedNS;
+
+        public String SelectedNS
+        {
+            get { return selectedNS; }
+            set { selectedNS = value; }
+        }
+
+        
+        List<String> liLat_n_s = new List<String>() { "N", "S" };
+        public List<String> LiLat_n_s
+        {
+            get { return liLat_n_s; }
+            set { liLat_n_s = value; }
+        }
+
+        private String selectedEW;
+
+        public String SelectedEW
+        {
+            get { return selectedEW; }
+            set { selectedEW = value; }
+        }
+
+        List<String> liLat_e_w = new List<String>() { "E", "W" };
+        public List<String> LiLat_e_w
+        {
+            get { return liLat_e_w; }
+            set { liLat_e_w = value; }
+        }
+
+        private String selectedEtut;
+
+        public String SelectedEtut
+        {
+            get { return selectedEtut; }
+            set { selectedEtut = value; }
+        }
+
+        List<String> liEtut = new List<String>() {"UT", "ET"};
+        public List<String> LiEtut
+        {
+            get { return liEtut; }
+            set { liEtut = value; }
+        }
+
+        private String selectedEphe;
+
+        public String SelectedEphe
+        {
+            get { return selectedEphe; }
+            set { selectedEphe = value; }
+        }
+
+        List<String> liEphe = new List<string>() { "Swiss Ephemeris", "JPL Ephemeris DE406", "Moshier Ephemeris" };
+        public List<String> LiEphe
+        {
+            get { return liEphe; }
+            set { liEphe = value; }
+        }
+
+        private String selectedPlansel;
+
+        public String SelectedPlansel
+        {
+            get { return selectedPlansel; }
+            set { selectedPlansel = value; }
+        }
+
+        List<String> liPlansel = new List<string>() { "main planets", "with asteroids", "with hyp. bodies" };
+        public List<String> LiPlansel
+        {
+            get { return liPlansel; }
+            set { liPlansel = value; }
+        }
+
+        private String selectedCtr;
+
+        public String SelectedCtr
+        {
+            get { return selectedCtr; }
+            set { selectedCtr = value; }
+        }
+
+        List<String> liCtr = new List<string>() { "geocentric", "topocentric", "heliocentric", "barycentric", "sidereal Fagan", "sidereal Lahiri" };
+        public List<String> LiCtr
+        {
+            get { return liCtr; }
+            set { liCtr = value; }
+        }
+
+        private String selectedHysname;
+
+        public String SelectedHysname
+        {
+            get { return selectedHysname; }
+            set { selectedHysname = value; }
+        }
+
+        List<String> liHsysname = new List<string>() { "Placidus", "Campanus", "Regiomontanus", "Koch", "Equal", "Vehlow equal", "Horizon", "B=Alcabitus" };
+        public List<String> LiHsysname
+        {
+            get { return liHsysname; }
+            set { liHsysname = value; }
+        }
+
+        private String timeHour = System.DateTime.Now.Hour.ToString();
+        private String timeMinute = System.DateTime.Now.Minute.ToString();
+        private String timeSecond = System.DateTime.Now.Second.ToString();
+
+        public string TimeHour
+        {
+            get { return timeHour; }
+            set { timeHour = value; }
+        }
+
+        public string TimeMinute
+        {
+            get { return timeMinute; }
+            set { timeMinute = value; }
+        }
+
+        public string TimeSecond
+        {
+            get { return timeSecond; }
+            set { timeSecond = value; }
+        }
+
+        private String geoLongitudeHour = "8";
+        private String geoLongitudeMinute = "33";
+        private String geoLongitudeSecond = "0";
+
+        public string GeoLongitudeHour
+        {
+            get { return geoLongitudeHour; }
+            set { geoLongitudeHour = value; }
+        }
+
+        public string GeoLongitudeMinute
+        {
+            get { return geoLongitudeMinute; }
+            set { geoLongitudeMinute = value; }
+        }
+
+        public string GeoLongitudeSecond
+        {
+            get { return geoLongitudeSecond; }
+            set { geoLongitudeSecond = value; }
+        }
+
+        private String geoLatitudeHour = "47";
+        private String geoLatitudeMinute = "23";
+        private String geoLatitudeSecond = "0";
+
+        public string GeoLatitudeHour
+        {
+            get { return geoLatitudeHour; }
+            set { geoLatitudeHour = value; }
+        }
+
+        public string GeoLatitudeMinute
+        {
+            get { return geoLatitudeMinute; }
+            set { geoLatitudeMinute = value; }
+        }
+
+        public string GeoLatitudeSecond
+        {
+            get { return geoLatitudeSecond; }
+            set { geoLatitudeSecond = value; }
+        }
+
+        public string MeterAboveSea
+        {
+            get { return meterAboveSea; }
+            set { meterAboveSea = value; }
+        }
+
+        private String meterAboveSea = "0";
+
 
         double square_sum(double[] x) { return (x[0] * x[0] + x[1] * x[1] + x[2] * x[2]); }
     
@@ -95,7 +237,7 @@ namespace StellarExplorer_WPF.Modelle
         const string PLSEL_A = "0123456789mtABCDEFGHIJKLMNOPQRSTUVWX";
 
       
-        string[] zod_nam = new string[]{"ar", "ta", "ge", "cn", "le", "vi", "li", "sc", "sa", "cp", "aq", "pi"};
+        static string[] zod_nam = new string[]{"ar", "ta", "ge", "cn", "le", "vi", "li", "sc", "sa", "cp", "aq", "pi"};
 
         class cpd
         {
@@ -142,60 +284,116 @@ namespace StellarExplorer_WPF.Modelle
 
         SwissEph sweph;
 
-        public FormData() {
-           
-         
-            sweph = new SwissEph();
-           
-            init_data();
-            string argv0 = Environment.GetCommandLineArgs()[0];
-            
+        private ICommand _doItCommand;
+        public ICommand DoItCommand
+        {
+            get
+            {
+                if (_doItCommand == null)
+                    _doItCommand =
+                        new DelegateCommand(SaveExecuted
+                                            );
+                return _doItCommand;
+            }
         }
 
-      
         
+        public void SaveExecuted(object param)
+        {
+
+            sweph = new SwissEph();
+            init_data();
+            StringBuilder buf = new StringBuilder();
+            swisseph(buf);
+            //EDIT_OUTPUT2.Text = buf.ToString();
+            BufferString = buf.ToString();
+            //EDIT_OUTPUT2.Text = buf.ToString();
+            if (PropertyChanged != null)      // feuere Event
+                PropertyChanged(this,
+                    new PropertyChangedEventArgs("BufferString"));
+
+        }
+
+
+
         void init_data() {
-            //time_t time_of_day;
-            //struct tm tmbuf;
+            ////time_t time_of_day;
+            ////struct tm tmbuf;
+            //var time_of_day = DateTime.UtcNow;
+            ////tmbuf = *gmtime(&time_of_day);
+            //pd.mday = (uint)time_of_day.Day;
+            //pd.mon = (uint)time_of_day.Month;
+            //pd.year = time_of_day.Year;
+            //pd.hour = (uint)time_of_day.Hour;
+            //pd.min = (uint)time_of_day.Minute;
+            //pd.sec = (uint)time_of_day.Second;
+            ///* coordinates of Zurich */
+            //pd.lon_deg = 8;
+            //pd.lon_min = 33;
+            //pd.lon_sec = 0;
+            //pd.lat_deg = 47;
+            //pd.lat_min = 23;
+            //pd.lat_sec = 0;
+
+            //pd.alt = 0;
+            //pd.etut = etut[0];
+            //pd.lat_n_s = lat_n_s[0];
+            //pd.lon_e_w = lon_e_w[0];
+
+            //pd.ephe = ephe[0];
+            //pd.plansel = plansel[0];
+
+            //pd.ctr = ctr[0];
+            //pd.hsysname = hsysname[0];
+            //pd.sast = "433, 3045, 7066";
+            pd.etut = selectedEtut;
             var time_of_day = DateTime.UtcNow;
-            //tmbuf = *gmtime(&time_of_day);
             pd.mday = (uint)time_of_day.Day;
             pd.mon = (uint)time_of_day.Month;
             pd.year = time_of_day.Year;
             pd.hour = (uint)time_of_day.Hour;
             pd.min = (uint)time_of_day.Minute;
             pd.sec = (uint)time_of_day.Second;
-            /* coordinates of Zurich */
-            pd.lon_deg = 8;
-            pd.lon_min = 33;
-            pd.lon_sec = 0;
-            pd.lat_deg = 47;
-            pd.lat_min = 23;
-            pd.lat_sec = 0;
-            pd.alt = 0;
-            pd.etut = etut[0];
-            pd.lat_n_s = lat_n_s[0];
-            pd.lon_e_w = lon_e_w[0];
-            pd.ephe = ephe[0];
-            pd.plansel = plansel[0];
-            pd.ctr = ctr[0];
-            pd.hsysname = hsysname[0];
+            ///* coordinates of Zurich */
+            pd.lon_deg = (uint) int.Parse(geoLongitudeHour);
+            pd.lon_min = (uint) int.Parse(geoLongitudeMinute);
+            pd.lon_sec = (uint) int.Parse(geoLongitudeSecond);
+            pd.lat_deg = (uint) int.Parse(geoLatitudeHour);
+            pd.lat_min = (uint) int.Parse(geoLatitudeMinute);
+            pd.lat_sec = (uint) int.Parse(geoLatitudeSecond);
+
+            //TODO complete parameters
+            pd.alt = int.Parse(meterAboveSea);
+            
+            pd.lat_n_s = selectedNS;
+            pd.lon_e_w = selectedEW;
+            pd.ephe = selectedEphe;
+            pd.plansel = selectedPlansel;
+
+            pd.ctr = selectedCtr;
+            pd.hsysname = selectedHysname;
             pd.sast = "433, 3045, 7066";
+
         }
 
 
+        private String bufferString = String.Empty;
 
-
-
-
-        
-
-        
+        public String BufferString
+        {
+            get { return bufferString; }
+            set
+            {
+                bufferString = value;
+            }
+        }
 
         private void PB_DOIT_Click(object sender, EventArgs e) {
+            sweph = new SwissEph();
+            init_data();
             StringBuilder buf = new StringBuilder();
             swisseph(buf);
-            //EDIT_OUTPUT2.Text = buf.ToString();
+            
         }
         
         int swisseph(StringBuilder buf) {
@@ -748,9 +946,15 @@ namespace StellarExplorer_WPF.Modelle
             return -1;
         }
 
-        
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
 
 
-
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

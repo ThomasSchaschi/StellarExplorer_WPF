@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
-namespace StellarExplorer
+namespace StellarExplorer_WPF.MinorCenter
 {
     class ObjectCollection
     {
@@ -99,10 +93,6 @@ namespace StellarExplorer
         public string sigma_n { get; set; }
         public string spkid { get; set; }
         public string UB { get; set; }
-
-
-      
-
         
     }
 
@@ -137,5 +127,7 @@ namespace StellarExplorer
                 custom_speed, ",", custom_house, ",", custom_eclobl, ",", custom_nutation);
         }
     }
+
+   
 
 }

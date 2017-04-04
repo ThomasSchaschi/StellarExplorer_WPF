@@ -31,9 +31,14 @@ namespace StellarExplorer_WPF
            
         }
 
-        public String Customer { get; set; }
-        
+        private void BtnExit_Click(object sender, RoutedEventArgs e)
+        {
 
+            //TODO implement closing connection to db
 
+            Application.Current.Shutdown();
+        }
+
+       
     }
 }

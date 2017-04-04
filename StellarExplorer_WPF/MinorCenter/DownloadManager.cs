@@ -1,18 +1,110 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
-using System.Net.Http;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 using Newtonsoft.Json;
+using StellarExplorer_WPF.Annotations;
+using SwissEphNet;
+using WpfDBpruef.modelle;
 
-namespace StellarExplorer
+namespace StellarExplorer_WPF.MinorCenter
 {
-    class DownloadManager
+    class DownloadManager : INotifyPropertyChanged
     {
         //Main Query Browser Prefix for Data Obtain
         public String AsterankQuery = "http://www.asterank.com/api/asterank?";
+
+        private ICommand _downloadCommand;
+        public ICommand DownloadCommand
+        {
+            get
+            {
+                if (_downloadCommand == null)
+                    _downloadCommand =
+                        new DelegateCommand(SaveExecuted
+                                            );
+                return _downloadCommand;
+            }
+        }
+
+
+        private String _toQueryAsteroids;
+        public String ToQueryAsteroid
+        {
+            get { return _toQueryAsteroids; }
+            set { _toQueryAsteroids = value; }
+        }
+
+        private String _queriedAsteroids;
+
+        public String QueriedAsteroids
+        {
+            get { return _queriedAsteroids; }
+            set { _queriedAsteroids = value; }
+        }
+
+
+        public void SaveExecuted(object param)
+        {
+            try
+            {
+                List<AsteroidJson> queriedAsteroids = new List<AsteroidJson>();
+                //Correct integration of query string from EDIT_ASTNO
+                if (!ToQueryAsteroid.Equals(String.Empty))
+                {
+                    List<String> asteroidList = ToQueryAsteroid.Replace(" ", "").Split(',').ToList();
+                    DownloadManager downloadManager = new DownloadManager();
+                    foreach (String asteroid in asteroidList)
+                    {
+                        String query = downloadManager.createQuery(new AsteroidJson { name = asteroid });
+                        queriedAsteroids.Add(downloadManager.DownloadAsteroidJson(query, 1).First());
+                    }
+                }
+
+               
+
+                StringBuilder stringBuilder = new StringBuilder();
+
+                foreach (AsteroidJson asteroid in queriedAsteroids)
+                {
+                    // Determine type of AsteroidJson
+                    Type type = asteroid.GetType();
+                    //Query all attributes that are contained within AsteroidJson instance
+                    PropertyInfo[] propertyInfos = type.GetProperties();
+                    bool first = true;
+                    //Loop through all variables that should define the search
+                    stringBuilder.Append("Name : " + asteroid.name);
+                    foreach (var property in propertyInfos)
+                    {
+                        if (property.GetValue(asteroid, null) != null && !property.GetValue(asteroid, null).Equals(""))
+                        {
+                            stringBuilder.Append(Environment.NewLine + property.Name + " : " +
+                                                 property.GetValue(asteroid, null));
+                        }
+                    }
+
+                    stringBuilder.Append(Environment.NewLine + Environment.NewLine);
+                    //TEXT_LIVE.Text = "Size" + queriedAsteroids.Count.ToString();
+                }
+                QueriedAsteroids = stringBuilder.ToString();
+                if (PropertyChanged != null)      // feuere Event
+                    PropertyChanged(this,
+                        new PropertyChangedEventArgs("QueriedAsteroids"));
+                stringBuilder.Clear();
+            }
+            catch (Exception exception)
+            {
+                //MessageBox.Show("Seems like some of the extra bodies were not found which caused an error.", "StellarExplorer", MessageBoxButtons.OK);
+            }
+
+        }
+
+
 
 
         /// <summary>
@@ -96,5 +188,12 @@ namespace StellarExplorer
             return stringBuilder.ToString() + "}";
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }
