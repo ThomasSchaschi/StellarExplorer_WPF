@@ -9,6 +9,7 @@ using LiveCharts;
 using LiveCharts.Wpf;
 using StellarExplorer_WPF.Annotations;
 using StellarExplorer_WPF.DataViewer.Database;
+using SweWin.LiveQuery;
 
 namespace StellarExplorer_WPF.Graphing
 {
@@ -21,23 +22,69 @@ namespace StellarExplorer_WPF.Graphing
         public Func<double, string> YFormatter { get; set; }
         public String[] Labels { get; set; }
 
+        List<String> chartMonths = new List<String>();
+        ChartValues<double> chartEclLong = new ChartValues<double>();
+        ChartValues<double> chartEclLat = new ChartValues<double>();
+        ChartValues<double> chartDist = new ChartValues<double>();
+        ChartValues<double> chartSpeed = new ChartValues<double>();
+        ChartValues<double> chartHouse = new ChartValues<double>();
+        ChartValues<double> chartEclObl = new ChartValues<double>();
+        ChartValues<double> chartNutation = new ChartValues<double>();
+
+        private List<String> _selectAbleDatabasesList;
+        private String _selectedDatabase;
+        public List<string> SelectAbleDatabasesList
+        {
+            get { return _selectAbleDatabasesList; }
+            set { _selectAbleDatabasesList = value; }
+        }
+
+        public string SelectedDatabase
+        {
+            get { return _selectedDatabase; }
+            set
+            {
+                _selectedDatabase = value;
+                var databaseId = (from entry in Stellardb.Crude_Entries
+                    where entry.ce_ephemerisname.Equals(value)
+                    select entry.ce_id).First().ToString(); 
+                List<Table_Template> valsDb = new DBOperations().QueryTableTemplateFromTableGuid(databaseId);
+                chartMonths.Clear();
+                chartEclLong.Clear();
+                chartEclLat.Clear();
+                chartDist.Clear();
+                chartSpeed.Clear();
+                chartHouse.Clear();
+                chartEclObl.Clear();
+                foreach (Table_Template tableTemplate in valsDb)
+                {
+                    chartMonths.Add(tableTemplate.t_date.ToLongDateString());
+                    chartEclLong.Add(double.Parse(tableTemplate.t_ecllong.ToString()));
+                    chartEclLat.Add(double.Parse(tableTemplate.t_ecllat.ToString()));
+                    chartDist.Add(double.Parse(tableTemplate.t_dist.ToString()));
+                    chartSpeed.Add(double.Parse(tableTemplate.t_speed.ToString()));
+                    chartHouse.Add(double.Parse(tableTemplate.t_house.ToString()));
+                    chartEclObl.Add(double.Parse(tableTemplate.t_eclobl.ToString()));
+                }
+
+
+            }
+        }
+
+
         public GraphingDataModell()
         {
+            
+            var databaseEntries = Stellardb.Crude_Entries.ToList();
+            var listNames = (from entry in databaseEntries select entry.ce_ephemerisname).ToList();
+            SelectAbleDatabasesList = listNames;
+            
+
             //af with few
             var ed = from d in Stellardb.cd82d04d_07d0_4041_b4ad_bd7e29094ec3
                      select d;
 
-            int count = ed.Count();
-
-            var observableValues = new ChartValues<LiveCharts.Defaults.ObservableValue>();
-            List<String> chartMonths = new List<String>();
-            ChartValues<double> chartEclLong = new ChartValues<double>();
-            ChartValues<double> chartEclLat = new ChartValues<double>();
-            ChartValues<double> chartDist = new ChartValues<double>();
-            ChartValues<double> chartSpeed = new ChartValues<double>();
-            ChartValues<double> chartHouse = new ChartValues<double>();
-            ChartValues<double> chartEclObl = new ChartValues<double>();
-            ChartValues<double> chartNutation = new ChartValues<double>();
+         
             foreach (cd82d04d_07d0_4041_b4ad_bd7e29094ec3 a in ed)
             {
 

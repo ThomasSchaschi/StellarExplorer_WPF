@@ -353,7 +353,11 @@
                     </Grid.RowDefinitions>
 
                     <!-- Combobox definitions -->
-                    <ComboBox Style="{StaticResource SDropdowns}"/>
+                    <ComboBox Style="{StaticResource SDropdowns}"
+                              ItemsSource="{Binding SelectAbleDatabasesList}"
+                              SelectedIndex="0"
+                              IsSynchronizedWithCurrentItem="True"
+                              SelectedItem="{Binding SelectedDatabase, Mode=TwoWay}"/>
 
                     <!-- Grid definitions for display selection -->
                     <Grid Grid.Column="1">
@@ -369,7 +373,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <!-- Combobox definitions -->
+                        <!-- Checkbox definitions -->
                         <CheckBox Grid.Row="0" Grid.Column="0" Style="{StaticResource SCheckbox}" Content="Eclyptical Longitude"
                                   IsChecked="{Binding EclLongChecked}"/>
                         <CheckBox Grid.Row="1" Grid.Column="0" Style="{StaticResource SCheckbox}" Content="Eclyptical Latitude"
