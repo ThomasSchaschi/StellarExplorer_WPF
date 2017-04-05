@@ -3,10 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    
         xmlns:local="clr-namespace:StellarExplorer_WPF"
         xmlns:localm="clr-namespace:StellarExplorer_WPF.Modelle"
         xmlns:localn="clr-namespace:StellarExplorer_WPF.MinorCenter"
         xmlns:localo="clr-namespace:StellarExplorer_WPF.DataViewer"
+        xmlns:localp="clr-namespace:StellarExplorer_WPF.Graphing"
+    
         xmlns:Wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:System="clr-namespace:System;assembly=mscorlib"
         x:Class="StellarExplorer_WPF.MainWindow"
@@ -57,7 +60,7 @@
         <ObjectDataProvider x:Key="DataProvider" ObjectType="{x:Type localm:FormData}"></ObjectDataProvider>
         <ObjectDataProvider x:Key="DataProviderMinorCenter" ObjectType="{x:Type localn:DownloadManager}"></ObjectDataProvider>
         <ObjectDataProvider x:Key="DataProviderEphemeris" ObjectType="{x:Type localo:DataViewerModel}"></ObjectDataProvider>
-        
+        <ObjectDataProvider x:Key="DataProviderGraphing" ObjectType="{x:Type localp:GraphingDataModell}"></ObjectDataProvider>
         
     </Window.Resources>
 
@@ -337,7 +340,7 @@
             </TabItem>
             <!-- Here goes a graph plotter where ephemeris entries from the Ephemeris panel can be plotted -->
             <TabItem Header="Plotter">
-                <Grid>
+                <Grid DataContext="{Binding Source={StaticResource DataProviderGraphing}}">
 
                     <!-- Grid definitions -->
                     <Grid.ColumnDefinitions>
@@ -367,18 +370,36 @@
                         </Grid.ColumnDefinitions>
 
                         <!-- Combobox definitions -->
-                        <CheckBox Grid.Row="0" Grid.Column="0" Style="{StaticResource SCheckbox}" Content="Eclyptical Longitude"/>
-                        <CheckBox Grid.Row="1" Grid.Column="0" Style="{StaticResource SCheckbox}" Content="Eclyptical Latitude"/>
-                        <CheckBox Grid.Row="0" Grid.Column="1" Style="{StaticResource SCheckbox}" Content="Distance"/>
-                        <CheckBox Grid.Row="1" Grid.Column="1" Style="{StaticResource SCheckbox}" Content="Speed"/>
-                        <CheckBox Grid.Row="0" Grid.Column="2" Style="{StaticResource SCheckbox}" Content="House"/>
-                        <CheckBox Grid.Row="1" Grid.Column="2" Style="{StaticResource SCheckbox}" Content="Eclyptical obl."/>
+                        <CheckBox Grid.Row="0" Grid.Column="0" Style="{StaticResource SCheckbox}" Content="Eclyptical Longitude"
+                                  IsChecked="{Binding EclLongChecked}"/>
+                        <CheckBox Grid.Row="1" Grid.Column="0" Style="{StaticResource SCheckbox}" Content="Eclyptical Latitude"
+                                  IsChecked="{Binding EclLatChecked}"/>
+                        <CheckBox Grid.Row="0" Grid.Column="1" Style="{StaticResource SCheckbox}" Content="Distance"
+                                  IsChecked="{Binding DistanceChecked}"/>
+                        <CheckBox Grid.Row="1" Grid.Column="1" Style="{StaticResource SCheckbox}" Content="Speed"
+                                  IsChecked="{Binding SpeedChecked}"/>
+                        <CheckBox Grid.Row="0" Grid.Column="2" Style="{StaticResource SCheckbox}" Content="House"
+                                  IsChecked="{Binding HouseChecked}"/>
+                        <CheckBox Grid.Row="1" Grid.Column="2" Style="{StaticResource SCheckbox}" Content="Eclyptical obl."
+                                  IsChecked="{Binding EclOblChecked}"/>
 
                     </Grid>
 
                     
                     <!-- Chart definitions -->
-                    <Wpf:CartesianChart Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="2 2 2 2"/> 
+                    <Wpf:CartesianChart Series="{Binding SeriesCollection}" Zoom="X" Margin="5" Grid.Row="1" Grid.Column="0"
+                                        Grid.ColumnSpan="2">
+                        <Wpf:CartesianChart.AxisY>
+                            <Wpf:Axis Title="Values" LabelFormatter="{Binding YFormatter}">
+                                <Wpf:Axis.Foreground>Black</Wpf:Axis.Foreground>
+                            </Wpf:Axis>
+                        </Wpf:CartesianChart.AxisY>
+                        <Wpf:CartesianChart.AxisX>
+                            <Wpf:Axis Title="Dates" Labels="{Binding Labels}" LabelFormatter="{Binding XFormatter}">
+                                <Wpf:Axis.Foreground>Black</Wpf:Axis.Foreground>
+                            </Wpf:Axis>
+                        </Wpf:CartesianChart.AxisX>
+                    </Wpf:CartesianChart>
                 </Grid>
             </TabItem>
         </TabControl>

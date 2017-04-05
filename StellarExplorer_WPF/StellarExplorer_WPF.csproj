@@ -14,6 +14,7 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -26,7 +27,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -102,7 +102,25 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DataViewer\DatabaseModeller.cs" />
+    <Compile Include="DataViewer\Database\af90a4bd_27ae_496b_b716_815f3a1ac41c.cs">
+      <DependentUpon>StellarDBAdo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataViewer\Database\C1369ca66_1e40_4cc6_9904_ef6b669f719d.cs">
+      <DependentUpon>StellarDBAdo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataViewer\Database\C3f58b164_3074_4c2a_97ea_642f263c4610.cs">
+      <DependentUpon>StellarDBAdo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataViewer\Database\C5bb24462_050b_43ac_af54_beb1ddf69bdd.cs">
+      <DependentUpon>StellarDBAdo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataViewer\Database\cd82d04d_07d0_4041_b4ad_bd7e29094ec3.cs">
+      <DependentUpon>StellarDBAdo.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataViewer\Database\Crude_Entries.cs">
+      <DependentUpon>StellarDBAdo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataViewer\Database\eefd2969_68bf_4b2d_8bb8_43da8e913c49.cs">
       <DependentUpon>StellarDBAdo.tt</DependentUpon>
     </Compile>
     <Compile Include="DataViewer\Database\StellarDBAdo.Context.cs">
@@ -129,6 +147,7 @@
     <Compile Include="DataViewer\Database\TakeOverProperties.cs" />
     <Compile Include="DataViewer\DataViewerModel.cs" />
     <Compile Include="DataViewer\DBOperations.cs" />
+    <Compile Include="Graphing\GraphingDataModell.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -199,9 +218,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataViewer\Database\stellardb.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="DataViewer\Database\StellarDBAdo.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>StellarDBAdo.edmx</DependentUpon>
@@ -212,7 +228,10 @@
       <DependentUpon>StellarDBAdo.edmx</DependentUpon>
       <LastGenOutput>StellarDBAdo.cs</LastGenOutput>
     </Content>
-    <Content Include="DataViewer\Database\stellardb_log.ldf">
+    <Content Include="stellardb.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="stellardb_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>stellardb.mdf</DependentUpon>
     </Content>

@@ -5,6 +5,116 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="stellardbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\THOMA\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\STELLAREXPLORER_WPF\STELLAREXPLORER_WPF\STELLARDB.MDF.dbo.1369ca66-1e40-4cc6-9904-ef6b669f719d' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="1369ca66-1e40-4cc6-9904-ef6b669f719d">
+          <Key>
+            <PropertyRef Name="t_date" />
+            <PropertyRef Name="t_ecllong" />
+            <PropertyRef Name="t_ecllat" />
+            <PropertyRef Name="t_dist" />
+            <PropertyRef Name="t_speed" />
+            <PropertyRef Name="t_house" />
+            <PropertyRef Name="t_eclobl" />
+            <PropertyRef Name="t_nutation" />
+          </Key>
+          <Property Name="t_date" Type="datetime" Nullable="false" />
+          <Property Name="t_ecllong" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_ecllat" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_dist" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_speed" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_house" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_eclobl" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="t_nutation" Type="varchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\THOMA\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\STELLAREXPLORER_WPF\STELLAREXPLORER_WPF\STELLARDB.MDF.dbo.3f58b164-3074-4c2a-97ea-642f263c4610' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="3f58b164-3074-4c2a-97ea-642f263c4610">
+          <Key>
+            <PropertyRef Name="t_date" />
+            <PropertyRef Name="t_ecllong" />
+            <PropertyRef Name="t_ecllat" />
+            <PropertyRef Name="t_dist" />
+            <PropertyRef Name="t_speed" />
+            <PropertyRef Name="t_house" />
+            <PropertyRef Name="t_eclobl" />
+            <PropertyRef Name="t_nutation" />
+          </Key>
+          <Property Name="t_date" Type="datetime" Nullable="false" />
+          <Property Name="t_ecllong" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_ecllat" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_dist" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_speed" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_house" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_eclobl" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="t_nutation" Type="varchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\THOMA\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\STELLAREXPLORER_WPF\STELLAREXPLORER_WPF\STELLARDB.MDF.dbo.5bb24462-050b-43ac-af54-beb1ddf69bdd' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="5bb24462-050b-43ac-af54-beb1ddf69bdd">
+          <Key>
+            <PropertyRef Name="t_date" />
+            <PropertyRef Name="t_ecllong" />
+            <PropertyRef Name="t_ecllat" />
+            <PropertyRef Name="t_dist" />
+            <PropertyRef Name="t_speed" />
+            <PropertyRef Name="t_house" />
+            <PropertyRef Name="t_eclobl" />
+            <PropertyRef Name="t_nutation" />
+          </Key>
+          <Property Name="t_date" Type="datetime" Nullable="false" />
+          <Property Name="t_ecllong" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_ecllat" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_dist" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_speed" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_house" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_eclobl" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="t_nutation" Type="varchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\THOMA\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\STELLAREXPLORER_WPF\STELLAREXPLORER_WPF\STELLARDB.MDF.dbo.af90a4bd-27ae-496b-b716-815f3a1ac41c' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="af90a4bd-27ae-496b-b716-815f3a1ac41c">
+          <Key>
+            <PropertyRef Name="t_date" />
+            <PropertyRef Name="t_ecllong" />
+            <PropertyRef Name="t_ecllat" />
+            <PropertyRef Name="t_dist" />
+            <PropertyRef Name="t_speed" />
+            <PropertyRef Name="t_house" />
+            <PropertyRef Name="t_eclobl" />
+            <PropertyRef Name="t_nutation" />
+          </Key>
+          <Property Name="t_date" Type="datetime" Nullable="false" />
+          <Property Name="t_ecllong" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_ecllat" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_dist" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_speed" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_house" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_eclobl" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="t_nutation" Type="varchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\THOMA\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\STELLAREXPLORER_WPF\STELLAREXPLORER_WPF\STELLARDB.MDF.dbo.cd82d04d-07d0-4041-b4ad-bd7e29094ec3' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="cd82d04d-07d0-4041-b4ad-bd7e29094ec3">
+          <Key>
+            <PropertyRef Name="t_date" />
+            <PropertyRef Name="t_ecllong" />
+            <PropertyRef Name="t_ecllat" />
+            <PropertyRef Name="t_dist" />
+            <PropertyRef Name="t_speed" />
+            <PropertyRef Name="t_house" />
+            <PropertyRef Name="t_eclobl" />
+            <PropertyRef Name="t_nutation" />
+          </Key>
+          <Property Name="t_date" Type="datetime" Nullable="false" />
+          <Property Name="t_ecllong" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_ecllat" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_dist" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_speed" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_house" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_eclobl" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="t_nutation" Type="varchar" MaxLength="80" Nullable="false" />
+        </EntityType>
         <EntityType Name="Crude_Entries">
           <Key>
             <PropertyRef Name="ce_id" />
@@ -23,6 +133,28 @@
           <Property Name="ce_intervals" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ce_object" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\THOMA\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\STELLAREXPLORER_WPF\STELLAREXPLORER_WPF\STELLARDB.MDF.dbo.eefd2969-68bf-4b2d-8bb8-43da8e913c49' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="eefd2969-68bf-4b2d-8bb8-43da8e913c49">
+          <Key>
+            <PropertyRef Name="t_date" />
+            <PropertyRef Name="t_ecllong" />
+            <PropertyRef Name="t_ecllat" />
+            <PropertyRef Name="t_dist" />
+            <PropertyRef Name="t_speed" />
+            <PropertyRef Name="t_house" />
+            <PropertyRef Name="t_eclobl" />
+            <PropertyRef Name="t_nutation" />
+          </Key>
+          <Property Name="t_date" Type="datetime" Nullable="false" />
+          <Property Name="t_ecllong" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_ecllat" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_dist" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_speed" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_house" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_eclobl" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="t_nutation" Type="varchar" MaxLength="80" Nullable="false" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -34,7 +166,7 @@
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'C:\USERS\THOMA\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\STELLAREXPLORER_WPF\STELLAREXPLORER_WPF\DATAVIEWER\DATABASE\STELLARDB.MDF.dbo.Table_Template' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'C:\USERS\THOMA\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\STELLAREXPLORER_WPF\STELLAREXPLORER_WPF\STELLARDB.MDF.dbo.Table_Template' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Table_Template">
           <Key>
             <PropertyRef Name="t_date" />
@@ -89,6 +221,78 @@ warning 6002: The table/view 'C:\USERS\THOMA\DOCUMENTS\VISUAL STUDIO 2015\PROJEC
         <EntityContainer Name="stellardbModelStoreContainer">
           <EntitySet Name="Crude_Entries" EntityType="Self.Crude_Entries" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="1369ca66-1e40-4cc6-9904-ef6b669f719d" EntityType="Self.1369ca66-1e40-4cc6-9904-ef6b669f719d" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [1369ca66-1e40-4cc6-9904-ef6b669f719d].[t_date] AS [t_date], 
+    [1369ca66-1e40-4cc6-9904-ef6b669f719d].[t_ecllong] AS [t_ecllong], 
+    [1369ca66-1e40-4cc6-9904-ef6b669f719d].[t_ecllat] AS [t_ecllat], 
+    [1369ca66-1e40-4cc6-9904-ef6b669f719d].[t_dist] AS [t_dist], 
+    [1369ca66-1e40-4cc6-9904-ef6b669f719d].[t_speed] AS [t_speed], 
+    [1369ca66-1e40-4cc6-9904-ef6b669f719d].[t_house] AS [t_house], 
+    [1369ca66-1e40-4cc6-9904-ef6b669f719d].[t_eclobl] AS [t_eclobl], 
+    [1369ca66-1e40-4cc6-9904-ef6b669f719d].[t_nutation] AS [t_nutation]
+    FROM [dbo].[1369ca66-1e40-4cc6-9904-ef6b669f719d] AS [1369ca66-1e40-4cc6-9904-ef6b669f719d]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="3f58b164-3074-4c2a-97ea-642f263c4610" EntityType="Self.3f58b164-3074-4c2a-97ea-642f263c4610" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [3f58b164-3074-4c2a-97ea-642f263c4610].[t_date] AS [t_date], 
+    [3f58b164-3074-4c2a-97ea-642f263c4610].[t_ecllong] AS [t_ecllong], 
+    [3f58b164-3074-4c2a-97ea-642f263c4610].[t_ecllat] AS [t_ecllat], 
+    [3f58b164-3074-4c2a-97ea-642f263c4610].[t_dist] AS [t_dist], 
+    [3f58b164-3074-4c2a-97ea-642f263c4610].[t_speed] AS [t_speed], 
+    [3f58b164-3074-4c2a-97ea-642f263c4610].[t_house] AS [t_house], 
+    [3f58b164-3074-4c2a-97ea-642f263c4610].[t_eclobl] AS [t_eclobl], 
+    [3f58b164-3074-4c2a-97ea-642f263c4610].[t_nutation] AS [t_nutation]
+    FROM [dbo].[3f58b164-3074-4c2a-97ea-642f263c4610] AS [3f58b164-3074-4c2a-97ea-642f263c4610]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="5bb24462-050b-43ac-af54-beb1ddf69bdd" EntityType="Self.5bb24462-050b-43ac-af54-beb1ddf69bdd" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [5bb24462-050b-43ac-af54-beb1ddf69bdd].[t_date] AS [t_date], 
+    [5bb24462-050b-43ac-af54-beb1ddf69bdd].[t_ecllong] AS [t_ecllong], 
+    [5bb24462-050b-43ac-af54-beb1ddf69bdd].[t_ecllat] AS [t_ecllat], 
+    [5bb24462-050b-43ac-af54-beb1ddf69bdd].[t_dist] AS [t_dist], 
+    [5bb24462-050b-43ac-af54-beb1ddf69bdd].[t_speed] AS [t_speed], 
+    [5bb24462-050b-43ac-af54-beb1ddf69bdd].[t_house] AS [t_house], 
+    [5bb24462-050b-43ac-af54-beb1ddf69bdd].[t_eclobl] AS [t_eclobl], 
+    [5bb24462-050b-43ac-af54-beb1ddf69bdd].[t_nutation] AS [t_nutation]
+    FROM [dbo].[5bb24462-050b-43ac-af54-beb1ddf69bdd] AS [5bb24462-050b-43ac-af54-beb1ddf69bdd]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="af90a4bd-27ae-496b-b716-815f3a1ac41c" EntityType="Self.af90a4bd-27ae-496b-b716-815f3a1ac41c" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [af90a4bd-27ae-496b-b716-815f3a1ac41c].[t_date] AS [t_date], 
+    [af90a4bd-27ae-496b-b716-815f3a1ac41c].[t_ecllong] AS [t_ecllong], 
+    [af90a4bd-27ae-496b-b716-815f3a1ac41c].[t_ecllat] AS [t_ecllat], 
+    [af90a4bd-27ae-496b-b716-815f3a1ac41c].[t_dist] AS [t_dist], 
+    [af90a4bd-27ae-496b-b716-815f3a1ac41c].[t_speed] AS [t_speed], 
+    [af90a4bd-27ae-496b-b716-815f3a1ac41c].[t_house] AS [t_house], 
+    [af90a4bd-27ae-496b-b716-815f3a1ac41c].[t_eclobl] AS [t_eclobl], 
+    [af90a4bd-27ae-496b-b716-815f3a1ac41c].[t_nutation] AS [t_nutation]
+    FROM [dbo].[af90a4bd-27ae-496b-b716-815f3a1ac41c] AS [af90a4bd-27ae-496b-b716-815f3a1ac41c]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="cd82d04d-07d0-4041-b4ad-bd7e29094ec3" EntityType="Self.cd82d04d-07d0-4041-b4ad-bd7e29094ec3" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [cd82d04d-07d0-4041-b4ad-bd7e29094ec3].[t_date] AS [t_date], 
+    [cd82d04d-07d0-4041-b4ad-bd7e29094ec3].[t_ecllong] AS [t_ecllong], 
+    [cd82d04d-07d0-4041-b4ad-bd7e29094ec3].[t_ecllat] AS [t_ecllat], 
+    [cd82d04d-07d0-4041-b4ad-bd7e29094ec3].[t_dist] AS [t_dist], 
+    [cd82d04d-07d0-4041-b4ad-bd7e29094ec3].[t_speed] AS [t_speed], 
+    [cd82d04d-07d0-4041-b4ad-bd7e29094ec3].[t_house] AS [t_house], 
+    [cd82d04d-07d0-4041-b4ad-bd7e29094ec3].[t_eclobl] AS [t_eclobl], 
+    [cd82d04d-07d0-4041-b4ad-bd7e29094ec3].[t_nutation] AS [t_nutation]
+    FROM [dbo].[cd82d04d-07d0-4041-b4ad-bd7e29094ec3] AS [cd82d04d-07d0-4041-b4ad-bd7e29094ec3]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="eefd2969-68bf-4b2d-8bb8-43da8e913c49" EntityType="Self.eefd2969-68bf-4b2d-8bb8-43da8e913c49" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [eefd2969-68bf-4b2d-8bb8-43da8e913c49].[t_date] AS [t_date], 
+    [eefd2969-68bf-4b2d-8bb8-43da8e913c49].[t_ecllong] AS [t_ecllong], 
+    [eefd2969-68bf-4b2d-8bb8-43da8e913c49].[t_ecllat] AS [t_ecllat], 
+    [eefd2969-68bf-4b2d-8bb8-43da8e913c49].[t_dist] AS [t_dist], 
+    [eefd2969-68bf-4b2d-8bb8-43da8e913c49].[t_speed] AS [t_speed], 
+    [eefd2969-68bf-4b2d-8bb8-43da8e913c49].[t_house] AS [t_house], 
+    [eefd2969-68bf-4b2d-8bb8-43da8e913c49].[t_eclobl] AS [t_eclobl], 
+    [eefd2969-68bf-4b2d-8bb8-43da8e913c49].[t_nutation] AS [t_nutation]
+    FROM [dbo].[eefd2969-68bf-4b2d-8bb8-43da8e913c49] AS [eefd2969-68bf-4b2d-8bb8-43da8e913c49]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="Table_Template" EntityType="Self.Table_Template" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Table_Template].[t_date] AS [t_date], 
@@ -135,6 +339,126 @@ warning 6002: The table/view 'C:\USERS\THOMA\DOCUMENTS\VISUAL STUDIO 2015\PROJEC
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="C1369ca66_1e40_4cc6_9904_ef6b669f719d">
+          <Key>
+            <PropertyRef Name="t_date" />
+            <PropertyRef Name="t_ecllong" />
+            <PropertyRef Name="t_ecllat" />
+            <PropertyRef Name="t_dist" />
+            <PropertyRef Name="t_speed" />
+            <PropertyRef Name="t_house" />
+            <PropertyRef Name="t_eclobl" />
+            <PropertyRef Name="t_nutation" />
+          </Key>
+          <Property Name="t_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="t_ecllong" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_ecllat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_dist" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_speed" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_house" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_eclobl" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_nutation" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="C3f58b164_3074_4c2a_97ea_642f263c4610">
+          <Key>
+            <PropertyRef Name="t_date" />
+            <PropertyRef Name="t_ecllong" />
+            <PropertyRef Name="t_ecllat" />
+            <PropertyRef Name="t_dist" />
+            <PropertyRef Name="t_speed" />
+            <PropertyRef Name="t_house" />
+            <PropertyRef Name="t_eclobl" />
+            <PropertyRef Name="t_nutation" />
+          </Key>
+          <Property Name="t_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="t_ecllong" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_ecllat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_dist" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_speed" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_house" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_eclobl" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_nutation" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="C5bb24462_050b_43ac_af54_beb1ddf69bdd">
+          <Key>
+            <PropertyRef Name="t_date" />
+            <PropertyRef Name="t_ecllong" />
+            <PropertyRef Name="t_ecllat" />
+            <PropertyRef Name="t_dist" />
+            <PropertyRef Name="t_speed" />
+            <PropertyRef Name="t_house" />
+            <PropertyRef Name="t_eclobl" />
+            <PropertyRef Name="t_nutation" />
+          </Key>
+          <Property Name="t_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="t_ecllong" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_ecllat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_dist" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_speed" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_house" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_eclobl" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_nutation" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="af90a4bd_27ae_496b_b716_815f3a1ac41c">
+          <Key>
+            <PropertyRef Name="t_date" />
+            <PropertyRef Name="t_ecllong" />
+            <PropertyRef Name="t_ecllat" />
+            <PropertyRef Name="t_dist" />
+            <PropertyRef Name="t_speed" />
+            <PropertyRef Name="t_house" />
+            <PropertyRef Name="t_eclobl" />
+            <PropertyRef Name="t_nutation" />
+          </Key>
+          <Property Name="t_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="t_ecllong" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_ecllat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_dist" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_speed" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_house" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_eclobl" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_nutation" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cd82d04d_07d0_4041_b4ad_bd7e29094ec3">
+          <Key>
+            <PropertyRef Name="t_date" />
+            <PropertyRef Name="t_ecllong" />
+            <PropertyRef Name="t_ecllat" />
+            <PropertyRef Name="t_dist" />
+            <PropertyRef Name="t_speed" />
+            <PropertyRef Name="t_house" />
+            <PropertyRef Name="t_eclobl" />
+            <PropertyRef Name="t_nutation" />
+          </Key>
+          <Property Name="t_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="t_ecllong" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_ecllat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_dist" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_speed" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_house" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_eclobl" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_nutation" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="eefd2969_68bf_4b2d_8bb8_43da8e913c49">
+          <Key>
+            <PropertyRef Name="t_date" />
+            <PropertyRef Name="t_ecllong" />
+            <PropertyRef Name="t_ecllat" />
+            <PropertyRef Name="t_dist" />
+            <PropertyRef Name="t_speed" />
+            <PropertyRef Name="t_house" />
+            <PropertyRef Name="t_eclobl" />
+            <PropertyRef Name="t_nutation" />
+          </Key>
+          <Property Name="t_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="t_ecllong" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_ecllat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_dist" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_speed" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_house" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_eclobl" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="t_nutation" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
         <EntityType Name="Table_Template">
           <Key>
             <PropertyRef Name="t_date" />
@@ -158,6 +482,12 @@ warning 6002: The table/view 'C:\USERS\THOMA\DOCUMENTS\VISUAL STUDIO 2015\PROJEC
         <EntityContainer Name="stellardbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Crude_Entries" EntityType="Self.Crude_Entries" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="C1369ca66_1e40_4cc6_9904_ef6b669f719d" EntityType="Self.C1369ca66_1e40_4cc6_9904_ef6b669f719d" />
+          <EntitySet Name="C3f58b164_3074_4c2a_97ea_642f263c4610" EntityType="Self.C3f58b164_3074_4c2a_97ea_642f263c4610" />
+          <EntitySet Name="C5bb24462_050b_43ac_af54_beb1ddf69bdd" EntityType="Self.C5bb24462_050b_43ac_af54_beb1ddf69bdd" />
+          <EntitySet Name="af90a4bd_27ae_496b_b716_815f3a1ac41c" EntityType="Self.af90a4bd_27ae_496b_b716_815f3a1ac41c" />
+          <EntitySet Name="cd82d04d_07d0_4041_b4ad_bd7e29094ec3" EntityType="Self.cd82d04d_07d0_4041_b4ad_bd7e29094ec3" />
+          <EntitySet Name="eefd2969_68bf_4b2d_8bb8_43da8e913c49" EntityType="Self.eefd2969_68bf_4b2d_8bb8_43da8e913c49" />
           <EntitySet Name="Table_Template" EntityType="Self.Table_Template" />
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -223,6 +553,90 @@ warning 6002: The table/view 'C:\USERS\THOMA\DOCUMENTS\VISUAL STUDIO 2015\PROJEC
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C1369ca66_1e40_4cc6_9904_ef6b669f719d">
+            <EntityTypeMapping TypeName="stellardbModel.C1369ca66_1e40_4cc6_9904_ef6b669f719d">
+              <MappingFragment StoreEntitySet="1369ca66-1e40-4cc6-9904-ef6b669f719d">
+                <ScalarProperty Name="t_date" ColumnName="t_date" />
+                <ScalarProperty Name="t_ecllong" ColumnName="t_ecllong" />
+                <ScalarProperty Name="t_ecllat" ColumnName="t_ecllat" />
+                <ScalarProperty Name="t_dist" ColumnName="t_dist" />
+                <ScalarProperty Name="t_speed" ColumnName="t_speed" />
+                <ScalarProperty Name="t_house" ColumnName="t_house" />
+                <ScalarProperty Name="t_eclobl" ColumnName="t_eclobl" />
+                <ScalarProperty Name="t_nutation" ColumnName="t_nutation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C3f58b164_3074_4c2a_97ea_642f263c4610">
+            <EntityTypeMapping TypeName="stellardbModel.C3f58b164_3074_4c2a_97ea_642f263c4610">
+              <MappingFragment StoreEntitySet="3f58b164-3074-4c2a-97ea-642f263c4610">
+                <ScalarProperty Name="t_date" ColumnName="t_date" />
+                <ScalarProperty Name="t_ecllong" ColumnName="t_ecllong" />
+                <ScalarProperty Name="t_ecllat" ColumnName="t_ecllat" />
+                <ScalarProperty Name="t_dist" ColumnName="t_dist" />
+                <ScalarProperty Name="t_speed" ColumnName="t_speed" />
+                <ScalarProperty Name="t_house" ColumnName="t_house" />
+                <ScalarProperty Name="t_eclobl" ColumnName="t_eclobl" />
+                <ScalarProperty Name="t_nutation" ColumnName="t_nutation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C5bb24462_050b_43ac_af54_beb1ddf69bdd">
+            <EntityTypeMapping TypeName="stellardbModel.C5bb24462_050b_43ac_af54_beb1ddf69bdd">
+              <MappingFragment StoreEntitySet="5bb24462-050b-43ac-af54-beb1ddf69bdd">
+                <ScalarProperty Name="t_date" ColumnName="t_date" />
+                <ScalarProperty Name="t_ecllong" ColumnName="t_ecllong" />
+                <ScalarProperty Name="t_ecllat" ColumnName="t_ecllat" />
+                <ScalarProperty Name="t_dist" ColumnName="t_dist" />
+                <ScalarProperty Name="t_speed" ColumnName="t_speed" />
+                <ScalarProperty Name="t_house" ColumnName="t_house" />
+                <ScalarProperty Name="t_eclobl" ColumnName="t_eclobl" />
+                <ScalarProperty Name="t_nutation" ColumnName="t_nutation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="af90a4bd_27ae_496b_b716_815f3a1ac41c">
+            <EntityTypeMapping TypeName="stellardbModel.af90a4bd_27ae_496b_b716_815f3a1ac41c">
+              <MappingFragment StoreEntitySet="af90a4bd-27ae-496b-b716-815f3a1ac41c">
+                <ScalarProperty Name="t_date" ColumnName="t_date" />
+                <ScalarProperty Name="t_ecllong" ColumnName="t_ecllong" />
+                <ScalarProperty Name="t_ecllat" ColumnName="t_ecllat" />
+                <ScalarProperty Name="t_dist" ColumnName="t_dist" />
+                <ScalarProperty Name="t_speed" ColumnName="t_speed" />
+                <ScalarProperty Name="t_house" ColumnName="t_house" />
+                <ScalarProperty Name="t_eclobl" ColumnName="t_eclobl" />
+                <ScalarProperty Name="t_nutation" ColumnName="t_nutation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cd82d04d_07d0_4041_b4ad_bd7e29094ec3">
+            <EntityTypeMapping TypeName="stellardbModel.cd82d04d_07d0_4041_b4ad_bd7e29094ec3">
+              <MappingFragment StoreEntitySet="cd82d04d-07d0-4041-b4ad-bd7e29094ec3">
+                <ScalarProperty Name="t_date" ColumnName="t_date" />
+                <ScalarProperty Name="t_ecllong" ColumnName="t_ecllong" />
+                <ScalarProperty Name="t_ecllat" ColumnName="t_ecllat" />
+                <ScalarProperty Name="t_dist" ColumnName="t_dist" />
+                <ScalarProperty Name="t_speed" ColumnName="t_speed" />
+                <ScalarProperty Name="t_house" ColumnName="t_house" />
+                <ScalarProperty Name="t_eclobl" ColumnName="t_eclobl" />
+                <ScalarProperty Name="t_nutation" ColumnName="t_nutation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="eefd2969_68bf_4b2d_8bb8_43da8e913c49">
+            <EntityTypeMapping TypeName="stellardbModel.eefd2969_68bf_4b2d_8bb8_43da8e913c49">
+              <MappingFragment StoreEntitySet="eefd2969-68bf-4b2d-8bb8-43da8e913c49">
+                <ScalarProperty Name="t_date" ColumnName="t_date" />
+                <ScalarProperty Name="t_ecllong" ColumnName="t_ecllong" />
+                <ScalarProperty Name="t_ecllat" ColumnName="t_ecllat" />
+                <ScalarProperty Name="t_dist" ColumnName="t_dist" />
+                <ScalarProperty Name="t_speed" ColumnName="t_speed" />
+                <ScalarProperty Name="t_house" ColumnName="t_house" />
+                <ScalarProperty Name="t_eclobl" ColumnName="t_eclobl" />
+                <ScalarProperty Name="t_nutation" ColumnName="t_nutation" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

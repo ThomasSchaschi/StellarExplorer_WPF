@@ -29,6 +29,12 @@ namespace StellarExplorer_WPF.DataViewer.Database
     
         public virtual DbSet<Crude_Entries> Crude_Entries { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<C1369ca66_1e40_4cc6_9904_ef6b669f719d> C1369ca66_1e40_4cc6_9904_ef6b669f719d { get; set; }
+        public virtual DbSet<C3f58b164_3074_4c2a_97ea_642f263c4610> C3f58b164_3074_4c2a_97ea_642f263c4610 { get; set; }
+        public virtual DbSet<C5bb24462_050b_43ac_af54_beb1ddf69bdd> C5bb24462_050b_43ac_af54_beb1ddf69bdd { get; set; }
+        public virtual DbSet<af90a4bd_27ae_496b_b716_815f3a1ac41c> af90a4bd_27ae_496b_b716_815f3a1ac41c { get; set; }
+        public virtual DbSet<cd82d04d_07d0_4041_b4ad_bd7e29094ec3> cd82d04d_07d0_4041_b4ad_bd7e29094ec3 { get; set; }
+        public virtual DbSet<eefd2969_68bf_4b2d_8bb8_43da8e913c49> eefd2969_68bf_4b2d_8bb8_43da8e913c49 { get; set; }
         public virtual DbSet<Table_Template> Table_Template { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)

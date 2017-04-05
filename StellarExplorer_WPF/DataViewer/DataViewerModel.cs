@@ -90,9 +90,11 @@ namespace StellarExplorer_WPF.DataViewer
         }
 
         public void SaveExecuted(object param)
-        {
-            
-            
+        { 
+
+
+            int i = dbOperations.QueryEphemerisList().Count;
+
             //var counter = dbOperations.QueryEphemerisNamesList().Count;
             _formData = new FormData();
             _formData.MonitorBody = SelectedBody;
@@ -184,32 +186,32 @@ namespace StellarExplorer_WPF.DataViewer
 
         }
 
-        public Crude_Entries CreateNewCrudeEntries()
-        {
-            Crude_Entries parseEntity = new Crude_Entries
-            {
-                ce_id = Guid.NewGuid(),
-                ce_ephemerisname = SaveToDatabaseAs,
-                ce_from = DateTimeFrom,
-                ce_until = DateTimeUntil, int.Parse(EDIT_UNTIL_DAY.Text)),
-                ce_geometricallongitude = EDIT_LONG.Text + EDIT_LONGM.Text + EDIT_LONGS.Text,
-                ce_geomatricallatitude = EDIT_LAT.Text + EDIT_LAT.Text + EDIT_LAT.Text,
-                ce_system = COMBO_CENTER.Text,
-                ce_service = COMBO_EPHE.Text,
-                ce_abovesea = int.Parse(EDIT_ALT.Text),
-                ce_object = EDIT_OBJECT.Text,
-                ce_intervals = textBox1.Text + "-" + COMBO_INTS.SelectedItem.ToString()
-            };
-            //{ "main planets", "with asteroids", "with hyp. bodies" };
-            parseEntity.ce_withasteroids = new byte[] { 0 };
-            parseEntity.ce_withhyperbolicbodies = new byte[] { 0 };
-            if (COMBO_PLANSEL.Text.Equals(plansel[1])) parseEntity.ce_withasteroids = new byte[] { 1 };
-            if (COMBO_PLANSEL.Text.Equals(plansel[2])) parseEntity.ce_withhyperbolicbodies = new byte[] { 1 };
+        //public Crude_Entries CreateNewCrudeEntries()
+        //{
+        //    Crude_Entries parseEntity = new Crude_Entries
+        //    {
+        //        ce_id = Guid.NewGuid(),
+        //        ce_ephemerisname = SaveToDatabaseAs,
+        //        ce_from = DateTimeFrom,
+        //        ce_until = DateTimeUntil, int.Parse(EDIT_UNTIL_DAY.Text)),
+        //        ce_geometricallongitude = EDIT_LONG.Text + EDIT_LONGM.Text + EDIT_LONGS.Text,
+        //        ce_geomatricallatitude = EDIT_LAT.Text + EDIT_LAT.Text + EDIT_LAT.Text,
+        //        ce_system = COMBO_CENTER.Text,
+        //        ce_service = COMBO_EPHE.Text,
+        //        ce_abovesea = int.Parse(EDIT_ALT.Text),
+        //        ce_object = EDIT_OBJECT.Text,
+        //        ce_intervals = textBox1.Text + "-" + COMBO_INTS.SelectedItem.ToString()
+        //    };
+        //    //{ "main planets", "with asteroids", "with hyp. bodies" };
+        //    parseEntity.ce_withasteroids = new byte[] { 0 };
+        //    parseEntity.ce_withhyperbolicbodies = new byte[] { 0 };
+        //    if (COMBO_PLANSEL.Text.Equals(plansel[1])) parseEntity.ce_withasteroids = new byte[] { 1 };
+        //    if (COMBO_PLANSEL.Text.Equals(plansel[2])) parseEntity.ce_withhyperbolicbodies = new byte[] { 1 };
 
-            //stellarEntity.Crude_Entries.
+        //    //stellarEntity.Crude_Entries.
 
-            return parseEntity;
-        }
+        //    return parseEntity;
+        //}
 
         public static int MonthDifference(DateTime lValue, DateTime rValue)
         {

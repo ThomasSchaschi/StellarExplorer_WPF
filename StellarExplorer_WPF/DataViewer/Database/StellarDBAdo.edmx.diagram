@@ -4,10 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f15e2b4d79814e58b0698291ae547fec" Name="Diagram1">
+      <Diagram DiagramId="35c16b8d3f0d4cfcada67a36af4cee15" Name="Diagram1">
         <EntityTypeShape EntityType="stellardbModel.Crude_Entries" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="stellardbModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="stellardbModel.Table_Template" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="stellardbModel.C1369ca66_1e40_4cc6_9904_ef6b669f719d" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="stellardbModel.C3f58b164_3074_4c2a_97ea_642f263c4610" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="stellardbModel.C5bb24462_050b_43ac_af54_beb1ddf69bdd" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="stellardbModel.af90a4bd_27ae_496b_b716_815f3a1ac41c" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="stellardbModel.cd82d04d_07d0_4041_b4ad_bd7e29094ec3" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="stellardbModel.eefd2969_68bf_4b2d_8bb8_43da8e913c49" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="stellardbModel.Table_Template" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

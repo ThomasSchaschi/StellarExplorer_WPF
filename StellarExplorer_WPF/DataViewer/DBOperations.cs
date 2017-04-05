@@ -39,9 +39,7 @@ namespace SweWin.LiveQuery
 
         public List<Crude_Entries> QueryEphemerisList()
         {
-            var erg = from entry in _entities.Crude_Entries
-                select new Crude_Entries();
-            return (List<Crude_Entries>) erg;
+            return _entities.Crude_Entries.ToList();
         }
 
         public List<Table_Template> QueryTableTemplateFromTableGuid(String guid)
