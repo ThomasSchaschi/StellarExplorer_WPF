@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using LiveCharts;
 using LiveCharts.Wpf;
 using StellarExplorer_WPF.Annotations;
@@ -13,31 +11,32 @@ using SweWin.LiveQuery;
 
 namespace StellarExplorer_WPF.Graphing
 {
-    class GraphingDataModell : INotifyPropertyChanged
+    internal class GraphingDataModell : INotifyPropertyChanged
     {
         public stellardbEntities Stellardb = new stellardbEntities();
-        private LineSeries lsEclLat, lsEclLong, lsDist, lsSpeed, lsHouse, lsNutation, lsEclObl;
+        private readonly LineSeries lsEclLat;
+        private readonly LineSeries lsEclLong;
+        private readonly LineSeries lsDist;
+        private readonly LineSeries lsSpeed;
+        private readonly LineSeries lsHouse;
+        private LineSeries lsNutation;
+        private readonly LineSeries lsEclObl;
         public SeriesCollection SeriesCollection { get; set; }
         public Func<double, string> XFormatter { get; set; }
         public Func<double, string> YFormatter { get; set; }
-        public String[] Labels { get; set; }
+        public string[] Labels { get; set; }
 
-        List<String> chartMonths = new List<String>();
-        ChartValues<double> chartEclLong = new ChartValues<double>();
-        ChartValues<double> chartEclLat = new ChartValues<double>();
-        ChartValues<double> chartDist = new ChartValues<double>();
-        ChartValues<double> chartSpeed = new ChartValues<double>();
-        ChartValues<double> chartHouse = new ChartValues<double>();
-        ChartValues<double> chartEclObl = new ChartValues<double>();
-        ChartValues<double> chartNutation = new ChartValues<double>();
+        private readonly List<string> chartMonths = new List<string>();
+        private readonly ChartValues<double> chartEclLong = new ChartValues<double>();
+        private readonly ChartValues<double> chartEclLat = new ChartValues<double>();
+        private readonly ChartValues<double> chartDist = new ChartValues<double>();
+        private readonly ChartValues<double> chartSpeed = new ChartValues<double>();
+        private readonly ChartValues<double> chartHouse = new ChartValues<double>();
+        private readonly ChartValues<double> chartEclObl = new ChartValues<double>();
+        private readonly ChartValues<double> chartNutation = new ChartValues<double>();
 
-        private List<String> _selectAbleDatabasesList;
-        private String _selectedDatabase;
-        public List<string> SelectAbleDatabasesList
-        {
-            get { return _selectAbleDatabasesList; }
-            set { _selectAbleDatabasesList = value; }
-        }
+        private string _selectedDatabase;
+        public List<string> SelectAbleDatabasesList { get; set; }
 
         public string SelectedDatabase
         {
@@ -47,8 +46,8 @@ namespace StellarExplorer_WPF.Graphing
                 _selectedDatabase = value;
                 var databaseId = (from entry in Stellardb.Crude_Entries
                     where entry.ce_ephemerisname.Equals(value)
-                    select entry.ce_id).First().ToString(); 
-                List<Table_Template> valsDb = new DBOperations().QueryTableTemplateFromTableGuid(databaseId);
+                    select entry.ce_id).First().ToString();
+                var valsDb = new DBOperations().QueryTableTemplateFromTableGuid(databaseId);
                 chartMonths.Clear();
                 chartEclLong.Clear();
                 chartEclLat.Clear();
@@ -56,45 +55,41 @@ namespace StellarExplorer_WPF.Graphing
                 chartSpeed.Clear();
                 chartHouse.Clear();
                 chartEclObl.Clear();
-                foreach (Table_Template tableTemplate in valsDb)
+                foreach (var tableTemplate in valsDb)
                 {
                     chartMonths.Add(tableTemplate.t_date.ToLongDateString());
-                    chartEclLong.Add(double.Parse(tableTemplate.t_ecllong.ToString()));
-                    chartEclLat.Add(double.Parse(tableTemplate.t_ecllat.ToString()));
-                    chartDist.Add(double.Parse(tableTemplate.t_dist.ToString()));
-                    chartSpeed.Add(double.Parse(tableTemplate.t_speed.ToString()));
-                    chartHouse.Add(double.Parse(tableTemplate.t_house.ToString()));
-                    chartEclObl.Add(double.Parse(tableTemplate.t_eclobl.ToString()));
+                    chartEclLong.Add(double.Parse(tableTemplate.t_ecllong));
+                    chartEclLat.Add(double.Parse(tableTemplate.t_ecllat));
+                    chartDist.Add(double.Parse(tableTemplate.t_dist));
+                    chartSpeed.Add(double.Parse(tableTemplate.t_speed));
+                    chartHouse.Add(double.Parse(tableTemplate.t_house));
+                    chartEclObl.Add(double.Parse(tableTemplate.t_eclobl));
                 }
-
-
             }
         }
 
 
         public GraphingDataModell()
         {
-            
             var databaseEntries = Stellardb.Crude_Entries.ToList();
             var listNames = (from entry in databaseEntries select entry.ce_ephemerisname).ToList();
             SelectAbleDatabasesList = listNames;
-            
+
 
             //af with few
             var ed = from d in Stellardb.cd82d04d_07d0_4041_b4ad_bd7e29094ec3
-                     select d;
+                select d;
 
-         
-            foreach (cd82d04d_07d0_4041_b4ad_bd7e29094ec3 a in ed)
+
+            foreach (var a in ed)
             {
-
                 chartMonths.Add(a.t_date.ToLongDateString());
-                chartEclLong.Add(double.Parse(a.t_ecllong.ToString()));
-                chartEclLat.Add(double.Parse(a.t_ecllat.ToString()));
-                chartDist.Add(double.Parse(a.t_dist.ToString()));
-                chartSpeed.Add(double.Parse(a.t_speed.ToString()));
-                chartHouse.Add(double.Parse(a.t_house.ToString()));
-                chartEclObl.Add(double.Parse(a.t_eclobl.ToString()));
+                chartEclLong.Add(double.Parse(a.t_ecllong));
+                chartEclLat.Add(double.Parse(a.t_ecllat));
+                chartDist.Add(double.Parse(a.t_dist));
+                chartSpeed.Add(double.Parse(a.t_speed));
+                chartHouse.Add(double.Parse(a.t_house));
+                chartEclObl.Add(double.Parse(a.t_eclobl));
             }
 
             lsEclLat = new LineSeries
@@ -150,17 +145,17 @@ namespace StellarExplorer_WPF.Graphing
 
             SeriesCollection = new SeriesCollection();
 
-            XFormatter = val => new DateTime((long)val).ToString();
+            XFormatter = val => new DateTime((long) val).ToString();
             YFormatter = val => val.ToString();
             Labels = chartMonths.ToArray();
         }
 
-        private Boolean _eclLongChecked = false;
-        private Boolean _eclLatChecked = false;
-        private Boolean _distanceChecked = false;
-        private Boolean _houseChecked = false;
-        private Boolean _speedChecked = false;
-        private Boolean _eclOblChecked = false;
+        private bool _eclLongChecked;
+        private bool _eclLatChecked;
+        private bool _distanceChecked;
+        private bool _houseChecked;
+        private bool _speedChecked;
+        private bool _eclOblChecked;
 
         public bool EclLongChecked
         {
@@ -169,13 +164,9 @@ namespace StellarExplorer_WPF.Graphing
             {
                 _eclLongChecked = value;
                 if (value == false)
-                {
                     SeriesCollection.Remove(lsEclLong);
-                }
                 else
-                {
                     SeriesCollection.Add(lsEclLong);
-                }
                 PropChangedSeriesCollection();
             }
         }
@@ -187,13 +178,9 @@ namespace StellarExplorer_WPF.Graphing
             {
                 _eclLatChecked = value;
                 if (value == false)
-                {
                     SeriesCollection.Remove(lsEclLat);
-                }
                 else
-                {
                     SeriesCollection.Add(lsEclLat);
-                }
                 PropChangedSeriesCollection();
             }
         }
@@ -205,13 +192,9 @@ namespace StellarExplorer_WPF.Graphing
             {
                 _distanceChecked = value;
                 if (value == false)
-                {
                     SeriesCollection.Remove(lsDist);
-                }
                 else
-                {
                     SeriesCollection.Add(lsDist);
-                }
                 PropChangedSeriesCollection();
             }
         }
@@ -223,13 +206,9 @@ namespace StellarExplorer_WPF.Graphing
             {
                 _houseChecked = value;
                 if (value == false)
-                {
                     SeriesCollection.Remove(lsHouse);
-                }
                 else
-                {
                     SeriesCollection.Add(lsHouse);
-                }
                 PropChangedSeriesCollection();
             }
         }
@@ -241,13 +220,9 @@ namespace StellarExplorer_WPF.Graphing
             {
                 _speedChecked = value;
                 if (value == false)
-                {
                     SeriesCollection.Remove(lsSpeed);
-                }
                 else
-                {
                     SeriesCollection.Add(lsSpeed);
-                }
                 PropChangedSeriesCollection();
             }
         }
@@ -259,13 +234,9 @@ namespace StellarExplorer_WPF.Graphing
             {
                 _eclOblChecked = value;
                 if (value == false)
-                {
                     SeriesCollection.Remove(lsEclObl);
-                }
                 else
-                {
                     SeriesCollection.Add(lsEclObl);
-                }
                 PropChangedSeriesCollection();
             }
         }
@@ -273,7 +244,7 @@ namespace StellarExplorer_WPF.Graphing
 
         private void PropChangedSeriesCollection()
         {
-            if (PropertyChanged != null)      // feuere Event
+            if (PropertyChanged != null) // feuere Event
                 PropertyChanged(this,
                     new PropertyChangedEventArgs("SeriesCollection"));
         }
